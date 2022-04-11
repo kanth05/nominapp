@@ -19,15 +19,11 @@ $(document).ready( function(){
                 });
             }else{
 
-                $(`label[for=${resultado['campo']}]`).append(`<div class="alert alert-warning" role="alert">${resultado.err}</div>`);
-
-                $('#'+resultado['campo']).on('blur', () => {
-                    $('.alert').remove();
-                });
+                mostrarError(resultado);
 
                 return swal.insertQueueStep({
                     type: 'error',
-                    title: resultado.err
+                    title: 'Error al registrar el empleado'
                 });
             }
         } catch (error) {
@@ -36,13 +32,23 @@ $(document).ready( function(){
                 title: error.err
             });
         }
-        
-
     }
 
     const eventos = () => {
 
-        let myForm = document.getElementById('general-info');
+        const myForm = document.getElementById('general-info');
+        const cedula = document.getElementById('cedula');
+
+        cedula.addEventListener('blur', (e) => {
+
+            let ipAPI = 'http://localhost/nominApp/empleado/validaCedula';
+            $(`#cedula`).removeClass('is-invalid');
+            $(`.error-div`).removeClass('d-block').addClass('d-none');
+            $('.grupo-errores').remove();
+            validaCedula(ipAPI, cedula.value);
+
+        })
+
         myForm.addEventListener('submit', (e) => {
             
             e.preventDefault();
@@ -61,6 +67,8 @@ $(document).ready( function(){
                 padding: '2em',
                 preConfirm: function() {
                     
+                    $(`.error-div`).removeClass('d-block').addClass('d-none');
+                    $('.grupo-errores').remove();
                     return guardarEmpleado(ipAPI, data);
 
                 }
@@ -68,6 +76,61 @@ $(document).ready( function(){
               
         });
 
+
+
+    }
+
+    const mostrarError = (errores) => {
+
+        $(`.error-div`).removeClass('d-none').addClass('d-block');
+
+        let msgError = '<ul class="grupo-errores list-group">';
+
+        errores.forEach(err => {
+            
+            msgError += `<li class="list-group-item list-group-item-danger">${err['err']}</li >`;
+            // $(`input[name=${err['campo']}]`).addClass('is-invalid');
+            $(`#${err['campo']}`).addClass('is-invalid');
+
+            if( err['campo'] != 'cedula' ){
+                $(`#${err['campo']}`).on('blur', () => {
+                    // $(`input[name=${err['campo']}]`).removeClass('is-invalid');
+                    $(`#${err['campo']}`).removeClass('is-invalid');
+                });
+            }
+            
+
+        });
+
+        msgError += '</ul>';
+
+        ($(`.error-div`)).append(msgError);
+
+    }
+
+    const  validaCedula = async (url, cedula) =>{
+
+        const data = new FormData;
+        data.append( 'cedula', cedula );
+
+        try {
+
+            const res = await fetch( url, { method: 'POST', body: data });
+            const resultado = await res.json();
+
+            if( resultado[0]['err'] ){
+                console.log('error');
+                mostrarError(resultado);
+            }else{
+                $(`#${resultado[0]['campo']}`).addClass('is-valid');
+            }
+            
+        } catch (error) {
+            swal.insertQueueStep({
+                type: 'error',
+                title: 'Error al validar la cedula'
+            });
+        }
     }
 
     /*ARRANCA EL CODIGO*/ 

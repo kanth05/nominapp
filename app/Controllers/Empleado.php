@@ -215,87 +215,87 @@ class Empleado extends BaseController
         $data = [];
 
         if( empty( $cedula ) || strlen( $cedula ) == 0 ){
-            $data = [ 'err' => 'La cédula no puede estar vacía.', 'campo' => 'cedula'];
+            $data[] = [ 'err' => 'La cédula no puede estar vacía.', 'campo' => 'cedula'];
         }
 
         if( empty( $nombres ) || strlen( $nombres ) == 0 ){
-            $data = [ 'err' => 'El nombre no puede estar vacía.', 'campo' => 'nombres'];
+            $data[] = [ 'err' => 'El nombre no puede estar vacía.', 'campo' => 'nombres'];
         }
 
         if( empty( $apellidos ) || strlen( $apellidos ) == 0 ){
-            $data = [ 'err' => 'El apellido no puede estar vacía.', 'campo' => 'apellidos'];
+            $data[] = [ 'err' => 'El apellido no puede estar vacía.', 'campo' => 'apellidos'];
         }
 
         if( empty( $codDepartamento ) || strlen( $codDepartamento ) == 0 ){
-            $data = [ 'err' => 'El empleado debe tener un departamento asignado.', 'campo' => 'departamento'];
+            $data[] = [ 'err' => 'El empleado debe tener un departamento asignado.', 'campo' => 'departamento'];
         }
 
         if( empty( $codCargo ) || strlen( $codCargo ) == 0 ){
-            $data = [ 'err' => 'El cargo no puede estar vacía', 'campo' => 'cargo'];
+            $data[] = [ 'err' => 'El cargo no puede estar vacía', 'campo' => 'cargo'];
         }
 
         if( empty( $codCargoDen ) || strlen( $codCargoDen ) == 0 ){
-            $data = [ 'err' => 'El empleado debe tener una denominación de cargo asignada.', 'campo' => 'cargoDen'];
+            $data[] = [ 'err' => 'El empleado debe tener una denominación de cargo asignada.', 'campo' => 'cargoDen'];
         }
 
         if( empty( $fecNac ) || strlen( $fecNac ) == 0 ){
-            $data = [ 'err' => 'La fecha de nacimiento no puede estar vacía', 'campo' => 'fecNac'];
+            $data[] = [ 'err' => 'La fecha de nacimiento no puede estar vacía', 'campo' => 'fecNac'];
         }
 
         if( empty( $telefMovil ) || strlen( $telefMovil ) == 0 ){
-            $data = [ 'err' => 'El número de teléfono celular no puede estar vacía', 'campo' => 'telefCel'];
+            $data[] = [ 'err' => 'El número de teléfono celular no puede estar vacía', 'campo' => 'telefCel'];
         }
 
         if( empty( $codEstado ) || strlen( $codEstado ) == 0 ){
-            $data = [ 'err' => 'Debe elegir un estado donde reside.', 'campo' => 'residencia'];
+            $data[] = [ 'err' => 'Debe elegir un estado donde reside.', 'campo' => 'residencia'];
         }
 
         if( empty( $codEdoCivil ) || strlen( $codEdoCivil ) == 0 ){
-            $data = [ 'err' => 'Debe seleccionar un estado civil.', 'campo' => 'edoCivil'];
+            $data[] = [ 'err' => 'Debe seleccionar un estado civil.', 'campo' => 'edoCivil'];
         }
 
         if( empty( $codNivelAcademico ) || strlen( $codNivelAcademico ) == 0 ){
-            $data = [ 'err' => 'Debe seleccionar un nivel académico.', 'campo' => 'nlvAcademico'];
+            $data[] = [ 'err' => 'Debe seleccionar un nivel académico.', 'campo' => 'nlvAcademico'];
         }
 
         if( empty( $fecIngreso ) || strlen( $fecIngreso ) == 0 ){
-            $data = [ 'err' => 'Debe de indicar la fecha de ingreso.', 'campo' => 'fecIni'];
+            $data[] = [ 'err' => 'Debe de indicar la fecha de ingreso.', 'campo' => 'fecIni'];
         }
 
         if( empty( $lugarSufraga ) || strlen( $lugarSufraga ) == 0 ){
-            $data = [ 'err' => 'Debe de ingresar el lugar donde sufraga.', 'campo' => 'sufragio'];
+            $data[] = [ 'err' => 'Debe de ingresar el lugar donde sufraga.', 'campo' => 'sufragio'];
         }
 
         if( empty( $codInstBanca ) || strlen( $codInstBanca ) == 0 ){
-            $data = [ 'err' => 'Debe de indicar el banco al cual se va a depositar.', 'campo' => 'banco'];
+            $data[] = [ 'err' => 'Debe de indicar el banco al cual se va a depositar.', 'campo' => 'banco'];
         }
 
         if( empty( $tipoCuenta ) || strlen( $tipoCuenta ) == 0 ){
-            $data = [ 'err' => 'Eliga un tipo de cuenta.', 'campo' => 'tipoCuenta'];
+            $data[] = [ 'err' => 'Eliga un tipo de cuenta.', 'campo' => 'tipoCuenta'];
         }
 
         if( empty( $numCuenta ) || strlen( $numCuenta ) == 0 ){
-            $data = [ 'err' => 'Debe ingresar un número de cuenta bancario.', 'campo' => 'numCuenta'];
+            $data[] = [ 'err' => 'Debe ingresar un número de cuenta bancario.', 'campo' => 'numCuenta'];
         }
 
         if( empty( $codTipoNomin ) || strlen( $codTipoNomin ) == 0 ){
-            $data = [ 'err' => 'Debe indicar el tipo de nómina que tendrá el empleado.', 'campo' => 'tipoNomina'];
+            $data[] = [ 'err' => 'Debe indicar el tipo de nómina que tendrá el empleado.', 'campo' => 'tipoNomina'];
         }
 
         $personaRes = $persona->where('cedula', $cedula)->findAll();
 
         if(count($personaRes) !== 0 ){
-            $data = [ 'err' => 'Ya existe un empleado con la cédula registrada, verifique dicho registro.'];
+            $data[] = [ 'err' => 'Ya existe un empleado con la cédula registrada, verifique dicho registro.'];
         }
 
         $personaRes = $persona->where('email', $email)->findAll();
 
         if(count($personaRes) !== 0 ){
-            $data = [ 'err' => 'Ya existe un empleado con el email registrado, verifique dicho registro.'];
+            $data[] = [ 'err' => 'Ya existe un empleado con el email registrado, verifique dicho registro.'];
         }
 
-        if( isset( $data['err']) ){
-            return $this->respond($data, 403);
+        if( count( $data ) != 0 ){
+            return $this->respond($data, 200);
         }
 
         $insert = [
@@ -528,6 +528,22 @@ class Empleado extends BaseController
 
     }
 
+    public function validaCedula(){
+
+        $persona = new Persona();
+        $cedula = $this->request->getPost('cedula');
+
+        $res = $persona->where('cedula', $cedula)->findAll();
+
+        if( count($res) !== 0 ){
+            $data[] = [ 'err' => 'Ya existe un empleado con la cédula registrada, verifique dicho registro.', 'campo' => 'cedula'];
+        }else{
+            $data[] = ['msg' => 'Ok', 'campo' => 'cedula'];
+        }
+
+        return $this->respond($data, 200);
+
+    }
 
         
     

@@ -21,6 +21,8 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <div class="info">
+                                        <div class="row mx-5 my-3 d-none error-div">
+                                        </div>
                                         <h6 class="">Información básica</h6>
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -35,8 +37,8 @@
                                                         <div class="row">
                                                             <div class="col-xl-12 col-lg-12 col-md-4 ml-3">
                                                                 <div class="form-group">
-                                                                    <label class="dob-input">Status</label>
-                                                                    <select class="form-control" id="status" name="status">
+                                                                    <label class="dob-input" for="status">Status</label>
+                                                                    <select class="custom-select" id="status" name="status">
                                                                         <option value="1" <?= ($status == 'ACT' || !isset($status) ) ? 'selected' : null ?>>Activo</option>
                                                                         <option value="2" <?= ($status == 'SUS' ) ? 'selected' : null ?>>Suspendido</option>
                                                                         <option value="3" <?= ($status == 'EGR' ) ? 'selected' : null ?>>Egresado</option>
@@ -86,7 +88,7 @@
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="sexo">Sexo</label>
-                                                                        <select class="form-control" name="sexo" id="sexo">
+                                                                        <select class="custom-select" name="sexo" id="sexo">
                                                                             <option value= '1' <?= ($sexo == 'M' || !isset($sexo) ) ? 'selected' : null ?> >Masculino</option>
                                                                             <option value= '2' <?= ($tipoCuenta == 'F') ? 'selected' : null ?>>Femenino</option>
                                                                         </select>
@@ -95,7 +97,7 @@
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input">Tipo de sangre</label>
-                                                                        <select class="form-control" name="tipoSangre" id="tipoSangre">
+                                                                        <select class="custom-select" name="tipoSangre" id="tipoSangre">
                                                                             <option value = '' <?= ($tipoSangre == '' || !isset($tipoSangre) ) ? 'selected' : null ?> >No se conoce</option>
                                                                             <option value ="A+" <?= ($tipoSangre == 'A+' ) ? 'selected' : null ?> >A+</option>
                                                                             <option value ="A-" <?= ($tipoSangre == 'A-' ) ? 'selected' : null ?> >A-</option>
@@ -110,8 +112,8 @@
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
-                                                                        <label class="dob-input">Estado civil</label>
-                                                                        <select class="form-control" name="edoCivil" id="edoCivil">
+                                                                        <label class="dob-input" for="edoCivil">Estado civil</label>
+                                                                        <select class="custom-select" name="edoCivil" id="edoCivil">
                                                                         <option value = '' selected >No se conoce</option>
                                                                             <?php foreach ($edoCivilSel as $valor):?>
                                                                                 <?php if( $valor['codEdoCivil'] == $edoCivil):?>
@@ -175,7 +177,7 @@
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label for="residencia">Estado en el que reside</label>
-                                                                        <select class="form-control" name="residencia" id="residencia">
+                                                                        <select class="custom-select" name="residencia" id="residencia">
                                                                             <option value = '' selected >No se conoce</option>
                                                                             <?php foreach ($estadosSel as $valor):?>
                                                                                 <?php if( $valor['codEstado'] == $codEstado):?>
@@ -221,7 +223,7 @@
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="nlvAcademico">Nivel académico</label>
-                                                                        <select class="form-control" name="nlvAcademico" id="nlvAcademico">
+                                                                        <select class="custom-select" name="nlvAcademico" id="nlvAcademico">
                                                                             <option value = '' selected >No se conoce</option>
                                                                             <?php foreach ($nvlAcademicoSel as $valor):?>
                                                                                 <?php if( $valor['codNivelAcademico'] == $nlvAcademico):?>
@@ -262,8 +264,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                    <label class="dob-input">Departamento asignado</label>
-                                                                    <select class="form-control" name="departamento" id="departamento">
+                                                                    <label class="dob-input" for="departamento">Departamento asignado</label>
+                                                                    <select class="custom-select" name="departamento" id="departamento">
                                                                         <option value = '' selected >No se conoce</option>
                                                                         <?php foreach ($departamentoSel as $valor):?>
                                                                             <?php if( $valor['codDepartamento'] == $departamento):?>
@@ -276,8 +278,8 @@
                                                                 </div>
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
-                                                                        <label class="dob-input">Cargo</label>
-                                                                        <select class="form-control" name="cargo" id="cargo">
+                                                                        <label class="dob-input" for="cargo">Cargo</label>
+                                                                        <select class="custom-select" name="cargo" id="cargo">
                                                                             <option value = '' selected >No se conoce</option>
                                                                             <?php foreach ($cargoSel as $valor):?>
                                                                                 <?php if( $valor['codCargo'] == $cargo):?>
@@ -290,7 +292,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                    <label class="dob-input">Denominación de cargo</label>
+                                                                    <label class="dob-input" for="cargoDen">Denominación de cargo</label>
                                                                     <select class="form-control" name="cargoDen" id="cargoDen">
                                                                         <option value = '' selected >No se conoce</option>
                                                                         <?php foreach ($cargoDenSel as $valor):?>
@@ -322,7 +324,7 @@
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="banco">Institución Bancaria</label>
-                                                                        <select class="form-control" name="banco" id="banco">
+                                                                        <select class="custom-select" name="banco" id="banco">
                                                                             <option value = '' selected >No se conoce</option>
                                                                             <?php foreach ($bancoSel as $valor):?>
                                                                                 <?php if( $valor['codInstBanca'] == $banco):?>
@@ -337,7 +339,7 @@
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="tipoCuenta">Tipo de cuenta</label>
-                                                                        <select class="form-control" name="tipoCuenta" id="tipoCuenta">
+                                                                        <select class="custom-select" name="tipoCuenta" id="tipoCuenta">
                                                                             <option value= '1' <?= ($tipoCuenta == 'CC' || !isset($tipoCuenta) ) ? 'selected' : null ?> >Cuenta Corriente</option>
                                                                             <option value= '2' <?= ($tipoCuenta == 'CA') ? 'selected' : null ?>>Cuenta de Ahorro</option>
                                                                         </select>
@@ -354,7 +356,7 @@
                                                                 <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="dob-input" for="tipoNomina">Tipo Nómina</label>
-                                                                    <select class="form-control" name="tipoNomina" id="tipoNomina">
+                                                                    <select class="custom-select" name="tipoNomina" id="tipoNomina">
                                                                         <option value = '' selected >No se conoce</option>
                                                                         <?php foreach ($tipoNominaSel as $valor):?>
                                                                             <?php if( $valor['codTipoNomina'] == $tipoNomina):?>
@@ -392,7 +394,7 @@
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="becaEscolar">¿Cuenta con una beca escolar?</label>
-                                                                        <select class="form-control" name="becaEscolar" id="becaEscolar">
+                                                                        <select class="custom-select" name="becaEscolar" id="becaEscolar">
                                                                             <option value='2' <?= ($becaEscolar == 'N' || !isset($becaEscolar)) ? 'selected' : null ?> >No</option>
                                                                             <option value='1' <?= ($becaEscolar == 'S') ? 'selected' : null ?>>Sí</option>
                                                                         </select>
@@ -401,7 +403,7 @@
                                                                 <div class="col-sm-5">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="incapacidad">¿El empleado posee alguna discapacidad?</label>
-                                                                        <select class="form-control" name="incapacidad" id="incapacidad">
+                                                                        <select class="custom-select" name="incapacidad" id="incapacidad">
                                                                             <option value='2' <?= ($incapacidad == 'N' || !isset($becaEscolar)) ? 'selected' : null ?> >No</option>
                                                                             <option value='1' <?= ($incapacidad == 'S') ? 'selected' : null ?> >Sí</option>
                                                                         </select>
@@ -420,7 +422,7 @@
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="vacaciones">¿El empleado se encuentra de vacaciones?</label>
-                                                                        <select class="form-control" name="vacaciones" id="vacaciones">
+                                                                        <select class="custom-select" name="vacaciones" id="vacaciones">
                                                                             <option value='2' <?= ($indVacaciones == 'N' || !isset($indVacaciones)) ? 'selected' : null ?> >No</option>
                                                                             <option value='1' <?= ($indVacaciones == 'S') ? 'selected' : null ?>>Sí</option>
                                                                         </select>
