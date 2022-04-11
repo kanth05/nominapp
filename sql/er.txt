@@ -1,0 +1,116 @@
+Tablas:
+
+- Personas:
+    | Cedula - varchar(10)
+    | Apellidos - varchar(50)
+    | Nombres - varchar(50)
+    | Direccion - varchar(255)
+    | UltimoTrabajoPublico - varchar(50) //Nombre de la Ultima Insitución Pública en caso de haber laborado
+    | telefLocal - varchar(50)
+    | telefMovil - varchar(50)
+    | codEdoCivil - varchar(1)
+    | fecNac - date
+    | lugarNacimiento - varchar(255)
+    | codEstado - varchar(3)
+    | tipoSangre - varchar(3)
+    | email - varchar(50)
+    | nombrePersonaEmergencia - varchar(50)
+    | telefPersonaEmergencia - varchar(50)
+    | codNivelAcademico - varchar(3)
+    | titulo - varchar(50)
+    | fecIniUpa - date
+    | codCargo - varchar(3)
+    | lugarSufraga - varchar(255)
+    | codInstBanca - varchar(3)
+    | codtipoCuenta - varchar(3)
+    | numCuenta - varchar(255)
+    | numHijos - int
+    | indBecaEscolar - bool
+****************************
+- unidad:
+    | codUnidad - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Bancos:
+    | codInstBanca - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tipos de cuenta bancaria:
+    | codtipoCuenta - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tipos estado civil:
+    | codEdoCivil - varchar(1)
+    | descripcion - varchar(100)
+****************************
+- Nivel académico:
+    | codNivelAcademico - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Estados:
+    | codEstado - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tipos de nomina:
+    | codTipoNomina - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tipos de nomina pagadas:
+    | codNominaPaga - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tipos de cargos:
+    | codTipoCargo - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Cargos:
+    | codCargo - varchar(3)
+    | codTipoCargo - varchar(3)
+    | descripcion - varchar(255)
+****************************
+- Tabulador persona administrativo:
+    | idTabulador - a.i
+    | codCargo - varchar(3)
+    | rango1 - int
+    | rango2 - int
+    | tabulador - double
+****************************
+- Tabulador alto Nivel:
+    | idTabulador - a.i
+    | codCargo - varchar(3)
+    | tabulador - double
+****************************
+- Tabulador personal Obrero:
+    | idTabulador - a.i
+    | codCargo - varchar(3)
+    | codTipoCargo - varchar(3)
+    | grado - int
+    | min - double
+    | max - double
+****************************
+- Prima de antiguedad:
+    | anoServicio - int
+    | prima - double
+****************************
+- Prima profesionalizacion:
+    | codNivelAcademico - varchar(3)
+    | prima - double
+****************************
+- Nomina:
+    | idNomina - a.i
+    | Cedula - varchar(10)
+    | salario - double
+    | bonoVacacional - bool
+    | montoBonoVac - double
+    | complementoSueldo - bool
+    | montoComplemento - double
+    | bonoProteico - bool
+    | montoBonoProteico - double|
+    | retroActivo - bool
+    | montoRetroActivo 
+****************************
+
+xx Preguntas:
+    - Como se calculan las deducciones (islr, seguro social, faov, rpe, tesoreria de seguridad social).
+    - Como se calculan el aporte patron ( seguro social, faov, rpe, tesoreria de seguridad social)
+    - Como se calculan los totales (Total asignación, total deducción, total prestamos, total aporte patron, neta a cobrar)

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>NOMINAPP</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="css/fontawesome.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+    <link href="assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    <style>
+        /*
+            The below code is for DEMO purpose --- Use it if you are using this demo otherwise, Remove it
+        */
+        .navbar .navbar-item.navbar-dropdown {
+            margin-left: auto;
+        }
+        .layout-px-spacing {
+            min-height: calc(100vh - 145px)!important;
+        }
+        .sm-icon{
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+        .xs-icon{
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        .bg-success-alt {
+            background-color: #c8f2d2 !important;
+        }
+
+    </style>
+
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- color sidebar - primary: #77966D || secundary:  #626D58-->
+    
+</head>
+<body class="sidebar-noneoverflow starterkit">
+    
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm mr-auto">
+
+            <a href="javascript:void(0);" class="sidebarCollapse ml-5" data-placement="bottom"><i class="fas fa-bars sm-icon"></i></a>
+
+            <ul class="navbar-item flex-row ml-5">
+                <li class="nav-item">
+                    <a class="navbar-brand user" href="index.html">Inicio</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row navbar-dropdown">
+
+                <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle sm-icon"></i>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
+                        <div class="user-profile-section">
+                            <div class="media mx-auto">
+                                <div class="media-body">
+                                    <h5>Usuario </h5>
+                                    <p>Analista de Talento Humano</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="user_profile.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span>Perfil</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="auth_lockscreen.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> <span>Lock Screen</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="auth_login.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <div class="sidebar-wrapper sidebar-theme">
+            
+            <nav id="compactSidebar">
+                <ul class="menu-categories">
+
+                    <li class="menu" >
+                        <a href="#menu1" data-active="false" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-user sm-icon text-light d-block"></i>
+                                <span>Empleados</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu2" data-active="false" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-address-book sm-icon text-light d-block"></i>
+                                <span>Nómina</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu3" data-active="true" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-chart-bar sm-icon text-light d-block"></i>
+                                <span>Tabuladores</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu4" data-active="true" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-address-card sm-icon text-light d-block"></i>
+                                <span>Usuario</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+                </ul>
+            </nav>
+
+            <div id="compact_submenuSidebar" class="submenu-sidebar">
+
+                <div class="submenu" id="menu1">
+                    <ul class="submenu-list text-light" data-parent-element="#menu1"> 
+                        <li>
+                            <a href="empleados.html"><i class="far fa-address-card xs-icon"></i> Perfíl Empleado </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu" id="menu2">
+                    <ul class="submenu-list" data-parent-element="#menu2"> 
+                        <li>
+                            <a href="nuevaNomina.html"><i class="fas fa-caret-down"></i></i> Nuevo </a>
+                        </li>
+                        <li>
+                            <a href="nomina.html"><i class="fas fa-caret-down"></i> Historial </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu" id="menu3">
+                    <ul class="submenu-list" data-parent-element="#menu2"> 
+                        <li>
+                            <a href="tabAltoNivel.html"><i class="fas fa-chart-line "></i></i> Alto Nivel </a>
+                        </li>
+                        <li>
+                            <a href="tabPersonalAdmin.html"><i class="fas fa-chart-line "></i> Personal Admin </a>
+                        </li>
+                        <li>
+                            <a href="tabPersonalOb.html"><i class="fas fa-chart-line "></i> Personal Obrero </a>
+                        </li>
+                        <li>
+                            <a href="primaAnt.html"><i class="fas fa-chart-line "></i> Prima por antiguedad </a>
+                        </li>
+                        <li>
+                            <a href="primaProf.html"><i class="fas fa-chart-line "></i> Prima por profesión </a>
+                        </li>
+                        <li>
+                            <a href="complementos.html"><i class="fas fa-chart-line "></i> Complementos salariales </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu show" id="menu4">
+                    <ul class="submenu-list" data-parent-element="#starterKit">
+                        <li>
+                            <a href="nuevoUser.html"> Nuevo </a>
+                        </li>
+                        <li>
+                            <a href="configUser.html"> Configuración </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!--  END SIDEBAR  -->
+        
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="page-header">
+                    <div class="page-title">
+                        <h3>Tabulador Alto Nivel</h3>
+                    </div>
+                </div>
+                
+                <div class="row layout-top-spacing" id="cancel-row">
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-content widget-content-area br-6">
+                            <div class="table-responsive mt-4 mb-4">
+                                <table id="example" class="table table-hover non-hover" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Cargo administración pública</th>
+                                            <th>Cargo F.M.A</th>
+                                            <th>Monto Bs.</th>
+                                            <th>Personal</th>
+                                            <th>Anteriores</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Máximas Aut. de Órganos y Entes</td>
+                                            <td>Presidente</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="28,48"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="7,32"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Directores Generales</td>
+                                            <td>Director General</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="27,08"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="6,96"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Directores de Línea</td>
+                                            <td>Director</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="25,90"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="6,66"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jefes de División</td>
+                                            <td>Asistente Ejecutivo</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="24,92"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="6,41"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coordinadores de Area</td>
+                                            <td>Coordinadores</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="23,80"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="6,12"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sueldo Mínimo Nacional</td>
+                                            <td>SMN</td>
+                                            <td><input type="text" id="monto" class="form-control" name="monto" value="7"></td>
+                                            <td><input type="text" id="personal" class="form-control" name="personal" value=""></td>
+                                            <td><input type="text" id="anteriores" class="form-control" name="anteriores" value="1,80"></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Cargo administración pública</th>
+                                            <th>Cargo F.M.A</th>
+                                            <th>Monto Bs.</th>
+                                            <th>Personal</th>
+                                            <th>Anteriores</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="account-settings-footer bg-light">   
+                <div class="as-footer-container">
+                    <button id="confirmacion" class="btn btn-success warning confirm">Guardar</button>
+                </div>
+            </div>
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!-- <script src="css/all.js"></script> -->
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+    <script src="plugins/table/datatable/datatables.js"></script>
+    <script src="assets/js/users/account-settings.js"></script>
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="plugins/sweetalerts/custom-sweetalert.js"></script>
+    <script>        
+        /* Create an array with the values of all the input boxes in a column */
+        $.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+        {
+            return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+                return $('input', td).val();
+            } );
+        }         
+        /* Create an array with the values of all the input boxes in a column, parsed as numbers */
+        $.fn.dataTable.ext.order['dom-text-numeric'] = function  ( settings, col )
+        {
+            return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+                return $('input', td).val() * 1;
+            } );
+        }         
+        /* Initialise the table with the required column ordering data types */
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                "columns": [
+                    null,
+                    { "orderDataType": "dom-text-numeric" },
+                    { "orderDataType": "dom-text", type: 'string' },
+                    { "orderDataType": "dom-select" }
+                ],
+                "oLanguage": {
+                    "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                    "sInfo": "",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Buscar...",
+                "sLengthMenu": "_MENU_",
+                },
+                "stripeClasses": [],
+                "lengthMenu": [12],
+                "pageLength": 12 
+            } );
+        } );
+
+        $('.warning.confirm').on('click', function () {
+            swal({
+                title: '¿Está seguro de la actualización?',
+                text: "!La información cambiará!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirmar',
+                padding: '2em'
+                }).then(function(result) {
+                if (result.value) {
+                    swal(
+                    '¡Proceso exitoso!',
+                    'El tabulador ha sido actualizado.',
+                    'success'
+                    )
+                }
+                })
+            })
+    </script>
+    <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>NOMINAPP</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="css/fontawesome.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+    <style>
+        /*
+            The below code is for DEMO purpose --- Use it if you are using this demo otherwise, Remove it
+        */
+        .navbar .navbar-item.navbar-dropdown {
+            margin-left: auto;
+        }
+        .layout-px-spacing {
+            min-height: calc(100vh - 145px)!important;
+        }
+        .sm-icon{
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+        .xs-icon{
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        .bg-success-alt {
+            background-color: #c8f2d2 !important;
+        }
+
+    </style>
+
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- color sidebar - primary: #77966D || secundary:  #626D58-->
+    
+</head>
+<body class="sidebar-noneoverflow starterkit">
+    
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm mr-auto">
+
+            <a href="javascript:void(0);" class="sidebarCollapse ml-5" data-placement="bottom"><i class="fas fa-bars sm-icon"></i></a>
+
+            <ul class="navbar-item flex-row ml-5">
+                <li class="nav-item">
+                    <a class="navbar-brand user" href="index.html">Inicio</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row navbar-dropdown">
+
+                <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle sm-icon"></i>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
+                        <div class="user-profile-section">
+                            <div class="media mx-auto">
+                                <div class="media-body">
+                                    <h5>Usuario </h5>
+                                    <p>Analista de Talento Humano</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="user_profile.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span>Perfil</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="auth_lockscreen.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> <span>Lock Screen</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="auth_login.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <div class="sidebar-wrapper sidebar-theme">
+            
+            <nav id="compactSidebar">
+                <ul class="menu-categories">
+
+                    <li class="menu" >
+                        <a href="#menu1" data-active="false" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-user sm-icon text-light d-block"></i>
+                                <span>Empleados</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu2" data-active="false" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-address-book sm-icon text-light d-block"></i>
+                                <span>Nómina</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu3" data-active="true" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-chart-bar sm-icon text-light d-block"></i>
+                                <span>Tabuladores</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#menu4" data-active="true" class="menu-toggle">
+                            <div class="base-menu">
+                                <i class="far fa-address-card sm-icon text-light d-block"></i>
+                                <span>Usuario</span>
+                            </div>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </li>
+                </ul>
+            </nav>
+
+            <div id="compact_submenuSidebar" class="submenu-sidebar">
+
+                <div class="submenu" id="menu1">
+                    <ul class="submenu-list text-light" data-parent-element="#menu1"> 
+                        <li>
+                            <a href="empleados.html"><i class="far fa-address-card xs-icon"></i> Perfíl Empleado </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu" id="menu2">
+                    <ul class="submenu-list" data-parent-element="#menu2"> 
+                        <li>
+                            <a href="nuevaNomina.html"><i class="fas fa-caret-down"></i></i> Nuevo </a>
+                        </li>
+                        <li>
+                            <a href="nominas.html"><i class="fas fa-caret-down"></i> Historial </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu" id="menu3">
+                    <ul class="submenu-list" data-parent-element="#menu2"> 
+                        <li>
+                            <a href="tabAltoNivel.html"><i class="fas fa-chart-line "></i></i> Alto Nivel </a>
+                        </li>
+                        <li>
+                            <a href="tabPersonalAdmin.html"><i class="fas fa-chart-line "></i> Personal Admin </a>
+                        </li>
+                        <li>
+                            <a href="tabPersonalOb"><i class="fas fa-chart-line "></i> Personal Obrero </a>
+                        </li>
+                        <li>
+                            <a href="primaAnt.html"><i class="fas fa-chart-line "></i> Prima por antiguedad </a>
+                        </li>
+                        <li>
+                            <a href="primaProf.html"><i class="fas fa-chart-line "></i> Prima por profesión </a>
+                        </li>
+                        <li>
+                            <a href="complementos.html"><i class="fas fa-chart-line "></i> Complementos salariales </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="submenu show" id="menu4">
+                    <ul class="submenu-list" data-parent-element="#starterKit">
+                        <li>
+                            <a href="nuevoUser.html"> Nuevo </a>
+                        </li>
+                        <li>
+                            <a href="configUser.html"> Configuración </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!--  END SIDEBAR  -->
+        
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="page-header">
+                    <div class="page-title">
+                        <h3>Empleados</h3>
+                    </div>
+                </div>
+                
+                <div class="row layout-top-spacing" id="cancel-row">
+                
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-content widget-content-area br-6">
+                            <div class="table-responsive mb-4 mt-4">
+                                <table id="html5-extension" class="table table-hover" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Cedula</th>
+                                            <th>Cargo</th>
+                                            <th>Departamento</th>
+                                            <th>Status</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger </td>
+                                            <td>Nixon</td>
+                                            <td>18334092</td>
+                                            <td>Analista</td>
+                                            <td>Talento Humano</td>
+                                            <td><strong class="text-success text-bold">Activo</strong></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="empleado.html" class="btn btn-dark btn-sm">Editar</a>
+                                                    <a href="empleado.html" class="btn btn-dark btn-sm">Ver</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett</td>
+                                            <td>Winters</td>
+                                            <td>15297061</td>
+                                            <td>Coordinador</td>
+                                            <td>Talento Humano</td>
+                                            <td><strong class="text-warning">Suspendido</strong></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="empleado.html" class="btn btn-dark btn-sm">Editar</a>
+                                                    <a href="empleado.html" class="btn btn-dark btn-sm">Ver</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                </div>
+        <div class="footer-wrapper">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © 2020 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
+        </div>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!-- <script src="css/all.js"></script> -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+    <script src="plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="plugins/table/datatable/button-ext/jszip.min.js"></script>    
+    <script src="plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script type="text/javascript">
+        //
+        $('#html5-extension').DataTable( {
+            dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+            buttons: {
+                buttons: [
+                    { extend: 'excel', className: 'btn btn-success' },
+                    { extend: 'print', className: 'btn btn-success' }
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": { 
+                    "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                    "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Pagina _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Buscar...",
+               "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 7 
+        } );
+    </script>
+</body>
+</html>
