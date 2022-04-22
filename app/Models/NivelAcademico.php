@@ -10,5 +10,11 @@ class NivelAcademico extends Model{
     protected $primaryKey = 'codNivelAcademico';
     protected $allowedFields = [ 'codNivelAcademico', 'descripcion' ];
     
+    public function consultaNivelAcademico(){
+
+        $nvlAcademicoRes = $this->findAll();
+        return $nvlAcademicoRes;
+
+    }
 
 }

@@ -38,46 +38,64 @@ $(document).ready( function(){
 
         const myForm = document.getElementById('general-info');
         const cedula = document.getElementById('cedula');
+        const email  = document.getElementById('email');
 
         cedula.addEventListener('blur', (e) => {
 
             let ipAPI = 'http://localhost/nominApp/empleado/validaCedula';
             $(`#cedula`).removeClass('is-invalid');
+            $(`#cedula`).removeClass('is-valid');
             $(`.error-div`).removeClass('d-block').addClass('d-none');
             $('.grupo-errores').remove();
-            validaCedula(ipAPI, cedula.value);
+            validaCampo(ipAPI, cedula.value, 'cedula');
+
+        })
+
+        email.addEventListener('blur', (e) => {
+
+            let ipAPI = 'http://localhost/nominApp/empleado/validaCorreo';
+            $(`#email`).removeClass('is-invalid');
+            $(`#email`).removeClass('is-valid');
+            $(`.error-div`).removeClass('d-block').addClass('d-none');
+            $('.grupo-errores').remove();
+            validaCampo(ipAPI, email.value, 'email');
 
         })
 
         myForm.addEventListener('submit', (e) => {
             
             e.preventDefault();
-            const cedulaUrl = $('#cedulaBD').val();
+            let cedulaUrl = $('#cedulaBD').val();
+            let observaciones = $('#observaciones').val();
             let endpoint = ( cedulaUrl.length === 0 ) ? 'empleado/guardar' : 'empleado/editar';
+            let titulo = ( cedulaUrl.length === 0 ) ? 'Registrar un nuevo empleado' : 'Actualización de empleado';
             let ipAPI = 'http://localhost/nominApp/'+endpoint;
             let data = new FormData(myForm);
             data.append('cedulaDB', cedulaUrl);
+            data.append('observaciones', observaciones);
+
             swal.queue([{
-                title: 'Registrar un nuevo empleado',
+                title: titulo,
                 confirmButtonText: 'Registrar',
                 text: '¿Estás seguro de realizar la operación?',
                 type: 'warning',
                 showCancelButton: true,
                 showLoaderOnConfirm: true,
                 padding: '2em',
-                preConfirm: function() {
+                preConfirm: async function() {
                     
                     $(`.error-div`).removeClass('d-block').addClass('d-none');
                     $('.grupo-errores').remove();
-                    return guardarEmpleado(ipAPI, data);
+                    // return await guardarEmpleado(ipAPI, data);
+                    await guardarEmpleado(ipAPI, data);
+
+                    if( cedulaUrl.length === 0 ){
+                        setTimeout( () => { window.location.replace("http://localhost/nominApp/empleados"); }, 1500); 
+                    }
 
                 }
-            }])
-              
+            }]);
         });
-
-
-
     }
 
     const mostrarError = (errores) => {
@@ -108,10 +126,12 @@ $(document).ready( function(){
 
     }
 
-    const  validaCedula = async (url, cedula) =>{
+    const  validaCampo = async (url, valor, campo) =>{
 
         const data = new FormData;
-        data.append( 'cedula', cedula );
+        let idPersona = ( $('#idPersona').val().length === 0 ) ? 0 : $('#idPersona').val();
+        data.append( campo, valor );
+        data.append( 'idPersona', idPersona );
 
         try {
 

@@ -23,7 +23,7 @@
                                     <div class="info">
                                         <div class="row mx-5 my-3 d-none error-div">
                                         </div>
-                                        <h6 class="">Información básica</h6>
+                                        <h6>Información básica</h6>
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="row">
@@ -49,6 +49,12 @@
                                                     </div>
                                                     <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                                                         <div class="form mx-auto">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <p>Id Empleado: <span><?= !empty($cedula) ? '00000'.$idPersona : '#';?></span></p>
+                                                                    <input hidden type="number" id="idPersona" name="idPersona" value="<?= isset($idPersona) ? $idPersona : null;?>">
+                                                                </div>
+                                                            </div>
                                                             <div class="row">
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
@@ -465,7 +471,7 @@
                         <div class="blockui-growl-message">
                             <i class="flaticon-double-check"></i>&nbsp; 
                         </div>
-                        <button id="confirmar" class="btn btn-success" type="submit" form="general-info"><?= !isset($cedulaDB) ? 'Guardar cambios' : 'Actualizar datos'?></button>
+                        <button id="confirmar" class="btn btn-success" type="submit" form="general-info"><?= !empty($cedula) ? 'Actualizar' : 'Guardar cambios'; ?></button>
 
                     </div>
 

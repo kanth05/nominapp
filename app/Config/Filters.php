@@ -31,12 +31,12 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            'auth' => ['except' => [ 'login','home/iniciarSesion' ] ],
+            'auth' => ['except' => [ 'login','home/iniciarSesion', 'empleado/guardar', 'empleado/editar' ] ],
             // 'honeypot',
             // 'csrf',
         ],
         'after' => [
-            'toolbar',
+            // 'toolbar',
             // 'honeypot',
         ],
     ];

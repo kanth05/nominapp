@@ -10,5 +10,11 @@ class TipoNomina extends Model{
     protected $primaryKey = 'codTipoNomina';
     protected $allowedFields = [ 'codTipoNomina', 'descripcion' ];
     
+    public function consultaTipoNomina(){
+
+        $tipoNominaRes = $this->orderBy('descripcion', 'ASC')->findAll();
+        return $tipoNominaRes;
+
+    }
 
 }

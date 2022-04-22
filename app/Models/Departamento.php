@@ -10,5 +10,11 @@ class Departamento extends Model{
     protected $primaryKey = 'codDepartamento';
     protected $allowedFields = [ 'codDepartamento', 'descripcion' ];
     
+    public function consultaDepartamentos(){
+
+        $departamentoRes = $this->orderBy('descripcion', 'ASC')->findAll();
+        return $departamentoRes;
+
+    }
 
 }

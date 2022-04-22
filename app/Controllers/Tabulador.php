@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Complemento;
+use App\Models\TabuladorM;
 use CodeIgniter\API\ResponseTrait;
 
 class Tabulador extends BaseController
@@ -66,7 +67,25 @@ class Tabulador extends BaseController
 
     public function tabPersonalOb(){
 
-        return view('tabuladores/tabPersonalOb');
+        $primaOb = new TabuladorM();
+        $arrPrimaOb = $primaOb->consultaPrimaObrero();
+
+        $data = [
+            'primaOb' => [
+                $arrPrimaOb[0],
+                $arrPrimaOb[1],
+                $arrPrimaOb[2],
+                $arrPrimaOb[3],
+                $arrPrimaOb[4],
+                $arrPrimaOb[5],
+                $arrPrimaOb[6],
+                $arrPrimaOb[7],
+                $arrPrimaOb[8],
+                $arrPrimaOb[9],
+            ]
+        ];
+
+        return view('tabuladores/tabPersonalOb', $data);
 
     }
 
@@ -147,6 +166,69 @@ class Tabulador extends BaseController
 
         return $this->respond($data, 200);
         
-
     }
+
+    public function editarPrimaOb(){
+
+        for ($i=1; $i < 11 ; $i++) { 
+
+            $montoMin = doubleval( str_replace( ',', '.', $this->request->getPost('min'.$i) ) );
+            $montoMax = doubleval( str_replace( ',', '.', $this->request->getPost('max'.$i) ) );
+            
+            switch ($i) {
+                case 1:
+                    $codigo = 'O-1';
+                    break;
+                case 2:
+                    $codigo = 'O-2';
+                    break;
+                case 3:
+                    $codigo = 'O-3';
+                    break;
+                case 4:
+                    $codigo = 'O-4';
+                    break;
+                case 5:
+                    $codigo = 'O-5';
+                    break;
+                case 6:
+                    $codigo = 'O-6';
+                    break;
+                case 7:
+                    $codigo = 'O-7';
+                    break;
+                case 8:
+                    $codigo = 'O-8';
+                    break;
+                case 9:
+                    $codigo = 'O-9';
+                    break;
+                default:
+                    $codigo = 'O-X';
+                    break;
+            }
+
+            if( $montoMin < 0 ) {
+                $montoMin = 0;
+            }
+
+            if( $montoMax < 0 ) {
+                $montoMax = 0;
+            }
+
+            $update = [
+                'mtomin' => $montoMin,
+                'mtomax' => $montoMax
+            ];
+
+            $primaProf = new TabuladorM();
+            $res = $primaProf->actualizaPrimaOb( $update, $codigo );
+            
+        }
+
+        $data = [ 'msg' => 'Las primas han sido actualizados.', 'res' => $update ];
+
+        return $this->respond($data, 200);
+    }
+        
 }

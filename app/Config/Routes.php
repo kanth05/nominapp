@@ -20,6 +20,7 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
+// $routes->set404Override('App\Controllers\Home::destruirSesion');
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
@@ -36,7 +37,7 @@ $routes->get('/creaUsuario', 'Home::creaUsuario');
 $routes->get('/destruirSesion', 'Home::destruirSesion');
 //empleados
 $routes->get('/empleados', 'Empleado::index', [ 'as' => 'empleados']);
-$routes->get('/empleadoEditar/(:num)', 'Empleado::empleado/$1', [ 'as' => 'empleadoEditar']);
+$routes->get('/empleadoEditar/(:any)', 'Empleado::empleado/$1', [ 'as' => 'empleadoEditar']);
 $routes->get('/empleadoNuevo/', 'Empleado::empleado', [ 'as' => 'empleadoNuevo']);
 //nomina
 $routes->get('/nominas', 'Nomina::index', [ 'as' => 'nominas']);
@@ -49,7 +50,7 @@ $routes->get('/altoNivel', 'Tabulador::tabAltoNivel', [ 'as' => 'altoNivel']);
 $routes->get('/personalAdmin', 'Tabulador::tabPersonalAdmin', [ 'as' => 'personalAdmin']);
 $routes->get('/personalObrero', 'Tabulador::tabPersonalOb', [ 'as' => 'personalObrero']);
 $routes->get('/primaAntiguedad', 'Tabulador::primaAnt', [ 'as' => 'primaAntiguedad']);
-$routes->get('/primaProfesion', 'Tabulador::primaProf', [ 'as' => 'primaProfesion']);
+$routes->get('/primaProfesion', 'PrimaProf::primaProfesion', [ 'as' => 'primaProfesion']);
 //Login
 $routes->get('/login', 'Home::login', [ 'as' => 'login']);
 /*

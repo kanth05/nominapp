@@ -10,5 +10,10 @@ class EstadoCivil extends Model{
     protected $primaryKey = 'codEdoCivil';
     protected $allowedFields = [ 'codeEdoCivil', 'descripcion' ];
     
+    public function consultaEstadoCivil(){
 
+        $edoCivilRes = $this->findAll();
+        return $edoCivilRes;
+
+    }
 }

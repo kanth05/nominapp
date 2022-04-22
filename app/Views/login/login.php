@@ -28,18 +28,18 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h2 class=""><span class="brand-name text-success">Gestión de nómina</span></h2>
+                        <h1 class=""><span class="brand-name text-success">Gestión de nómina</span></h1>
                         <form class="text-left" action="home/iniciarSesion" method="post">
                             <div class="form" action="index.html">
 
                                 <div id="username" class="field-wrapper input">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <input id="username" name="username" type="text" class="form-control" placeholder="Usuario">
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="Usuario" style="font-size: 20px !important">
                                 </div>
 
                                 <div id="password" class="field-wrapper input mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                    <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña">
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña" style="font-size: 20px !important">
                                 </div>
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">
@@ -53,7 +53,7 @@
                                         <div class="blockui-growl-message">
                                             <i class="flaticon-double-check"></i><h5 class="text-light"><?= isset($msg) ? $msg : null ?>.</h5>
                                         </div>
-                                        <button class="btn btn-success" type="submit">Conectarse</button>
+                                        <button class="btn btn-success" type="submit" style="font-size: 16px !important">Conectarse</button>
                                     </div>
                                     
                                 </div>

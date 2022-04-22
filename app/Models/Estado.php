@@ -10,5 +10,11 @@ class Estado extends Model{
     protected $primaryKey = 'codEstado';
     protected $allowedFields = [ 'codEstado', 'descripcion' ];
     
+    public function consultaEstados(){
+
+        $estadoRes = $this->orderBy('descripcion', 'ASC')->findAll();
+        return $estadoRes;
+
+    }
 
 }

@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
           message: $('.blockui-growl-message'), 
           fadeIn: 700, 
           fadeOut: 700, 
-          timeout: 3000, //unblock after 3 seconds
+          timeout: 1000, //unblock after 3 seconds
           showOverlay: false, 
           centerY: false, 
           css: { 
