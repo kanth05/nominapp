@@ -17,4 +17,12 @@ class CargoDen extends Model{
 
     }
 
+    public function consultaTipoCargoDen( $tipoCargo ){
+
+        $this->orderBy('codCargoDen', 'ASC');
+        $arrCargoDen = $this->where('tipoCargo', $tipoCargo )->findAll();
+        return $arrCargoDen;
+
+    }
+
 }

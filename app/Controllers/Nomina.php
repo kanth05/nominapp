@@ -5,9 +5,9 @@ use CodeIgniter\I18n\Time;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Models\Persona;
-use App\Models\Tabulador;
+use App\Models\TabuladorM;
 use App\Models\PrimaAntiguedad;
-use App\Models\PrimaProf;
+use App\Models\PrimaProfesional;
 use App\Models\Complemento;
 use App\Models\NominaM;
 use App\Models\NominaDetal;
@@ -272,7 +272,7 @@ class Nomina extends BaseController
 
     public function buscaSalario($codCargoDen){
 
-        $tabulador = new Tabulador();
+        $tabulador = new TabuladorM();
         $where = "codCargoDen = '{$codCargoDen}' AND ( rango1 IS NULL OR (rango1 >= 0 AND rango1 <= 4) )";
         $salario = $tabulador->where($where)->findAll();
 
@@ -300,7 +300,7 @@ class Nomina extends BaseController
 
     public function buscaPrimaProf( $codNivelAcademico ){
 
-        $primaProf = new PrimaProf;
+        $primaProf = new PrimaProfesional;
         $prima = $primaProf->where('codNivelAcademico', $codNivelAcademico )->findAll();
 
         return $prima[0]['prima'];
@@ -380,6 +380,22 @@ class Nomina extends BaseController
         $complemento = new Complemento();
         $complementoEsp = $complemento->where('codTipoComplemento', '006')->findAll();
         return round( $complementoEsp[0]['monto'] , 2 );
+
+    }
+
+    public function validaNominas(){
+
+        $nomina = new NominaM();
+        $res = $nomina->validaNominas();
+        return $this->respond($res, 200);
+
+    }
+
+    public function borrarNomina( $idNomina ){
+
+        $nomina = new NominaM();
+        $res = $nomina->borrarNomina($idNomina);
+        return redirect()->to( base_url( 'nominas' ) );
 
     }
 

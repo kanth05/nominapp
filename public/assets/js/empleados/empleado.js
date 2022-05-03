@@ -38,7 +38,27 @@ $(document).ready( function(){
 
         const myForm = document.getElementById('general-info');
         const cedula = document.getElementById('cedula');
+        const cedulaOld = document.getElementById('cedulaBD').value;
         const email  = document.getElementById('email');
+        const status = document.getElementById('status');
+        let statusDescrip = {
+            1: 'ACT',
+            2: 'SUS',
+            3: 'EGR'
+        };
+
+        if( cedulaOld.length != 0){
+
+            status.addEventListener( 'change', () => {
+
+                let statusOld = $('#statusDB').val();
+                let fecha = new Date();
+                let observaciones = $('#observaciones').val();
+                observaciones = observaciones +( (observaciones.length != 0) ? ' ||' : '' )+ ` Cambio de status: ${statusOld}->${statusDescrip[status.value]} (${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()})`;
+                $('#observaciones').val(observaciones);
+            });
+
+        }
 
         cedula.addEventListener('blur', (e) => {
 

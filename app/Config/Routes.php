@@ -39,11 +39,15 @@ $routes->get('/destruirSesion', 'Home::destruirSesion');
 $routes->get('/empleados', 'Empleado::index', [ 'as' => 'empleados']);
 $routes->get('/empleadoEditar/(:any)', 'Empleado::empleado/$1', [ 'as' => 'empleadoEditar']);
 $routes->get('/empleadoNuevo/', 'Empleado::empleado', [ 'as' => 'empleadoNuevo']);
+//Cargos
+$routes->get('/cargos', 'CargoC::index', [ 'as' => 'cargos']);
+$routes->get('/borrarCargo/(:any)', 'CargoC::borrarCargo/$1', [ 'as' => 'borrarCargo']);
 //nomina
 $routes->get('/nominas', 'Nomina::index', [ 'as' => 'nominas']);
 $routes->get('/nominaTotal/(:num)', 'Nomina::nominaTotal/$1', [ 'as' => 'nominaTotal']);
 $routes->get('/nominaDetal/(:num)', 'Nomina::nominaDetal/$1', [ 'as' => 'nominaDetal']);
 $routes->get('/nominaNueva', 'Nomina::nueva', [ 'as' => 'nominaNueva']);
+$routes->get('/borrarNomina/(:any)', 'Nomina::borrarNomina/$1', [ 'as' => 'borrarNomina']);
 //complementos
 $routes->get('/complementos', 'Tabulador::complementos', [ 'as' => 'complementos']);
 $routes->get('/altoNivel', 'Tabulador::tabAltoNivel', [ 'as' => 'altoNivel']);

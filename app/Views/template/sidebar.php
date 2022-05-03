@@ -52,16 +52,16 @@
                         <li>
                             <a href="<?=base_url().route_to('empleados'); ?>"><i class="far fa-address-card xs-icon"></i> Perfíl Empleado </a>
                         </li>
+                        <li>
+                            <a href="<?=base_url().route_to('cargos'); ?>"><i class="far fa-address-card xs-icon"></i> Edición de cargos </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="submenu" id="menu2">
                     <ul class="submenu-list" data-parent-element="#menu2"> 
                         <li>
-                            <a href="<?=base_url().route_to('nominaNueva'); ?>"><i class="fas fa-caret-down"></i></i> Nuevo </a>
-                        </li>
-                        <li>
-                            <a href="<?=base_url().route_to('nominas'); ?>"><i class="fas fa-caret-down"></i> Historial </a>
+                            <a href="<?=base_url().route_to('nominas'); ?>"><i class="fas fa-caret-down"></i> Historial de nóminas </a>
                         </li>
                     </ul>
                 </div>

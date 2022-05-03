@@ -43,6 +43,7 @@
                                                                         <option value="2" <?= ($status == 'SUS' ) ? 'selected' : null ?>>Suspendido</option>
                                                                         <option value="3" <?= ($status == 'EGR' ) ? 'selected' : null ?>>Egresado</option>
                                                                     </select>
+                                                                    <input hidden type="text" id="statusDB" name="statusDB" value="<?= isset($cedula) ? $status : null;?>">
                                                                 </div>
                                                             </div>
                                                         </div>

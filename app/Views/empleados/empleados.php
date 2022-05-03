@@ -57,7 +57,7 @@
                                                 }
                                             ?>
                                             <td>
-                                                <div class="btn-group">
+                                                <div class="btn-group d-flex">
                                                     <a href="<?=base_url().route_to('empleadoEditar',$empleado->cedula); ?>" class="btn btn-dark btn-sm">Editar</a>
                                                     <a href="" class="btn btn-dark btn-sm">Ver</a>
                                                 </div>

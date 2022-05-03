@@ -50,6 +50,15 @@ class NominaDetal extends Model{
         'totApp',
         'netoCobrar'
      ];
+
+     public function borrarNominaDetal( $idNomina ){
+
+        $this->where( 'idNomina', $idNomina );
+        $res = $this->delete();
+
+        return $res;
+
+     }
     
 
 }
