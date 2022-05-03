@@ -63,7 +63,7 @@ body.minimal .section {
         color: #1b55e2;
         vertical-align: middle; }
   .general-info .info label {
-    color: #888ea8;
+    color: #262627;
     font-size: 13px;
     letter-spacing: 1px; }
   .general-info .info .dropify-wrapper {
@@ -120,7 +120,7 @@ body.minimal .section {
   .about .info, .about .save-info {
     padding: 20px; }
   .about .info label {
-    color: #888ea8;
+    color: #262627;
     font-size: 13px;
     letter-spacing: 1px; }
 
@@ -148,7 +148,7 @@ body.minimal .section {
   .contact .info, .contact .save-info {
     padding: 20px; }
   .contact .info label {
-    color: #888ea8;
+    color: #262627;
     font-size: 13px;
     letter-spacing: 1px; }
 
@@ -255,7 +255,7 @@ body.minimal .section {
   .edu-experience .info, .edu-experience .save-info {
     padding: 20px; }
   .edu-experience .info label {
-    color: #888ea8;
+    color: #262627;
     font-size: 13px;
     letter-spacing: 1px; }
 
@@ -274,7 +274,7 @@ body.minimal .section {
   .work-experience .info, .work-experience .save-info {
     padding: 20px; }
   .work-experience .info label {
-    color: #888ea8;
+    color: #262627;
     font-size: 13px;
     letter-spacing: 1px; }
 
