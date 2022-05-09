@@ -86,16 +86,22 @@
                         <li>
                             <a href="<?= base_url().route_to('complementos'); ?>"><i class="fas fa-chart-line "></i> Complementos salariales </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url().route_to('complementosOpcionales'); ?>"><i class="fas fa-chart-line "></i> Complementos opcionales </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="submenu show" id="menu4">
+                    <?php  $session = \Config\Services::session(); ?>
                     <ul class="submenu-list" data-parent-element="#starterKit">
                         <li>
-                            <a href="nuevoUser.html"> Nuevo </a>
+                            <?php if($session->codRol == 'JEF'): ?>
+                                <a href="<?=base_url().route_to('usuarios'); ?>">Usuarios</a>
+                            <?php endif; ?>
                         </li>
                         <li>
-                            <a href="configUser.html"> Configuración </a>
+                            <a href="<?=base_url().route_to('usuario', $session->idUsuario ); ?>"> Configuración </a>
                         </li>
                     </ul>
                 </div>

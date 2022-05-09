@@ -6,6 +6,7 @@ use App\Models\Complemento;
 use App\Models\TabuladorM;
 use App\Models\CargoDen;
 use App\Models\PrimaAnt;
+use App\Models\Persona;
 use CodeIgniter\API\ResponseTrait;
 
 class Tabulador extends BaseController
@@ -40,6 +41,32 @@ class Tabulador extends BaseController
         ];
 
         return view( 'tabuladores/complementos', $data );
+
+    }
+
+    public function complementosOpcionales(){
+
+        $personaEn = new Persona();
+        $arrCe   = $personaEn->devuelvePersonaEncargaduria();
+        $personaBp = new Persona();
+        $arrBp   = $personaBp->devuelvePersonaBonoProteico();
+        $personaCs = new Persona();
+        $arrCs   = $personaCs->devuelvePersonaComplementoSueldo();
+
+        if( $this->request->getVar('tipoBono') !== null ){
+            $tipoBono = $this->request->getVar('tipoBono');
+        }else{
+            $tipoBono = '';
+        }
+
+        $data = [
+            'personasCe' => $arrCe,
+            'personasBp' => $arrBp,
+            'personasCs' => $arrCs,
+            'tipoBono'   => $tipoBono
+        ];
+
+        return view( 'tabuladores/complementosOpcionales', $data );
 
     }
 
@@ -355,6 +382,123 @@ class Tabulador extends BaseController
         $data = [ 'msg' => 'Las primas han sido actualizados.', 'res' => $update ];
 
         return $this->respond($data, 200);
+    }
+
+    public function consultaEmplados(){
+
+        $tipoBono  = $this->request->getPost('tipoBono');
+
+        switch ($tipoBono) {
+            case 'CE':
+                $campo = 'encargaduria';
+                break;
+            case 'BP':
+                $campo = 'bonoProteico';
+                break;
+            case 'CS':
+                $campo = 'complementoSueldo';
+                break;
+            default:
+                break;
+        }
+
+        $personas = new Persona();
+        $arrEmpleados = $personas->consultaEmpleadosMontos( $campo );
+
+        $data = [ 'msg' => 'Exitosa la consulta de emplados.', 'res' => $arrEmpleados ];
+        return $this->respond($data, 200);
+
+    }
+
+    public function guardarComplemento(){
+
+        $idPersona = $this->request->getPost('idPersona');
+        $monto     = $this->request->getPost('monto');
+        $tipoBono  = $this->request->getPost('tipoBono');
+
+        switch ($tipoBono) {
+            case 'CE':
+                $campo = 'encargaduria';
+                break;
+            case 'BP':
+                $campo = 'bonoProteico';
+                break;
+            case 'CS':
+                $campo = 'complementoSueldo';
+                break;
+            default:
+                break;
+        }
+
+        $persona = new Persona();
+        $res = $persona->actualizaMontoEmpleado($idPersona, $monto, $campo);
+        $data = [ 'msg' => 'Exitosa la consulta de emplados.', 'res' => $tipoBono ];
+
+        return $this->respond($data, 200);
+
+    }
+
+    public function borrarComplemento( $valor ){
+
+        $empleado  = explode( '-', $valor);
+        $idPersona = $empleado[0];
+        $tipoBono  = $empleado[1];
+
+        switch ($tipoBono) {
+            case 'CE':
+                $campo = 'encargaduria';
+                break;
+            case 'BP':
+                $campo = 'bonoProteico';
+                break;
+            case 'CS':
+                $campo = 'complementoSueldo';
+                break;
+            default:
+                break;
+        }
+
+        $persona = new Persona();
+        $persona->actualizaMontoEmpleado( $idPersona, 0, $campo);
+
+        return redirect()->to( base_url("complementosOpcionales?tipoBono={$tipoBono}") );
+
+    }
+
+    public function editarComplementosAdicionales(){
+
+        foreach( $this->request->getPost() as $key => $value ){
+
+            if( $key != 'bonoEspecial'){
+
+                $empleado  = explode( '-', $key);
+                $idPersona = $empleado[0];
+                $tipoBono  = $empleado[1];
+
+                switch ($tipoBono) {
+                    case 'CE':
+                        $campo = 'encargaduria';
+                        break;
+                    case 'BP':
+                        $campo = 'bonoProteico';
+                        break;
+                    case 'CS':
+                        $campo = 'complementoSueldo';
+                        break;
+                    default:
+                        break;
+                }
+
+                $persona = new Persona();
+                $persona->actualizaMontoEmpleado( $idPersona, $value, $campo);
+
+            }
+        }
+
+        $data = [ 'msg' => 'Los complementos han sido actualizados.', 'res' => 'Ok' ];
+
+        return $this->respond($data, 200);
+
     }
         
 }

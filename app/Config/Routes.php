@@ -50,6 +50,8 @@ $routes->get('/nominaNueva', 'Nomina::nueva', [ 'as' => 'nominaNueva']);
 $routes->get('/borrarNomina/(:any)', 'Nomina::borrarNomina/$1', [ 'as' => 'borrarNomina']);
 //complementos
 $routes->get('/complementos', 'Tabulador::complementos', [ 'as' => 'complementos']);
+$routes->get('/complementosOpcionales', 'Tabulador::complementosOpcionales', [ 'as' => 'complementosOpcionales']);
+$routes->get('/borrarComplemento/(:any)', 'Tabulador::borrarComplemento/$1', [ 'as' => 'borrarComplemento']);
 $routes->get('/altoNivel', 'Tabulador::tabAltoNivel', [ 'as' => 'altoNivel']);
 $routes->get('/personalAdmin', 'Tabulador::tabPersonalAdmin', [ 'as' => 'personalAdmin']);
 $routes->get('/personalObrero', 'Tabulador::tabPersonalOb', [ 'as' => 'personalObrero']);
@@ -57,6 +59,12 @@ $routes->get('/primaAntiguedad', 'Tabulador::primaAnt', [ 'as' => 'primaAntigued
 $routes->get('/primaProfesion', 'PrimaProf::primaProfesion', [ 'as' => 'primaProfesion']);
 //Login
 $routes->get('/login', 'Home::login', [ 'as' => 'login']);
+//Usuarios
+$routes->get('/usuarios', 'UsuarioC::index', [ 'as' => 'usuarios']);
+$routes->get('/usuario/(:any)', 'UsuarioC::usuario/$1', [ 'as' => 'usuario']);
+$routes->get('/restablecerContrasena/(:any)', 'UsuarioC::restablecerContrasena/$1', [ 'as' => 'restablecerContrasena']);
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

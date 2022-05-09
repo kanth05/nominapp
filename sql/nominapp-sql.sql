@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `nominapp`.`Persona` (
   `codTipoNomina` VARCHAR(3) NOT NULL,
   `observaciones` VARCHAR(500),
   `encargaduria`  DOUBLE DEFAULT 0,
+  `bonoProteico`  DOUBLE DEFAULT 0
   PRIMARY KEY (`idPersona`),
   CONSTRAINT `fk_Persona_Cargo1`
     FOREIGN KEY (`codCargo`)
@@ -362,6 +363,7 @@ CREATE TABLE IF NOT EXISTS `nominapp`.`Usuario` (
   `cedula` VARCHAR(10) NOT NULL,
   `password` VARCHAR(100),
   `codRol` ENUM('ANF', 'ANN', 'ANI', 'JEF') COMMENT 'ANF: Analista de ficha técnica; ANN: Analista de nómina; ANI: Analista integral; JEF: Jefe de departamento',
+  `status` ENUM('ACT', 'SUS') NOT NULL COMMENT 'ACT: Activo; SUS: Suspendido',
   `created` DATE,
   PRIMARY KEY (`idUsuario`),
   CONSTRAINT `fk_Usuario_Persona`

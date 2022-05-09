@@ -47,7 +47,9 @@ class Persona extends Model{
         'indVacaciones',
         'codTipoNomina',
         'observaciones',
-        'encargaduria'
+        'encargaduria',
+        'bonoProteico',
+        'complementoSueldo'
      ];
 
      public function consultaEmpleados(){
@@ -67,6 +69,39 @@ class Persona extends Model{
         return $arrEmpleados;
 
      }
+
+     public function consultaEmpleadosMontos( $campo ){
+
+      $db = db_connect();
+
+      $sql = 'SELECT p.*, d.descripcion as departamento, c.descripcion as cargo '.
+             'FROM persona p '.
+             'INNER JOIN departamento d '.
+             'ON p.codDepartamento = d.codDepartamento '.
+             'INNER JOIN cargo c '.
+             'ON p.codCargo = c.codCargo '.
+             "WHERE p.cedula != '00001'" .
+             'AND p.'.$campo.' = 0';            
+      
+      $arrEmpleados = $db->query($sql)->getResult();
+
+      return $arrEmpleados;
+
+   }
+
+   public function consultaEmpleadosUsr(){
+
+      $db = db_connect();
+
+      $sql = 'SELECT p.* '.
+             'FROM persona p '.
+             'WHERE NOT EXISTS ( SELECT cedula FROM usuario WHERE cedula = p.cedula) '.
+             "AND p.status = 'ACT' ";            
+      
+      $arrEmpleados = $db->query($sql)->getResult('array');
+      return $arrEmpleados;
+
+   }
 
      public function consultaEmpleado( $cedula ){
 
@@ -110,6 +145,56 @@ class Persona extends Model{
         return $res;
 
      }
+
+     public function devuelvePersonaEncargaduria(){
+
+      $where = [
+         'encargaduria !=' => 0,
+         'cedula !='       => '00001'   
+      ];
+
+      $personaEn = $this->where($where)->findAll();
+      return $personaEn;
+
+     }
+
+     public function devuelvePersonaBonoProteico(){
+
+      $where = [
+         'bonoProteico !=' => 0,
+         'cedula !='       => '00001'   
+      ];
+
+      $personaBp = $this->where($where)->findAll();
+      return $personaBp;
+
+     }
     
+     public function devuelvePersonaComplementoSueldo(){
+
+      $where = [
+         'complementoSueldo !=' => 0,
+         'cedula !='       => '00001'   
+      ];
+
+      $personaCs = $this->where($where)->findAll();
+      return $personaCs;
+
+     }
+
+     public function actualizaMontoEmpleado ( $idPersona, $monto, $campo ){
+
+      $arr = [
+         $campo => doubleval( $monto )
+      ];
+      $this->set( $arr );
+      $this->where('idPersona', $idPersona );
+      $upd = $this->update();
+
+      $res = ( $upd ) ? 'ok' : 'err';
+
+      return $res;
+
+   }
 
 }

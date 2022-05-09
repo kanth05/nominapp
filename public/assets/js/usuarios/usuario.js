@@ -2,27 +2,22 @@ $(document).ready( function(){
 
     const inicio = () => {
 
+        iniciarComponentes();
         eventos();
 
     }
 
     const editarComplementos = async ( url, data ) => {
 
+        
         try {
             const res       = await fetch(url, {method: 'POST', body: data});
             const resultado = await res.json();
 
-            if(resultado['msg']){
-                return swal.insertQueueStep({
+            if( resultado['msg'] ){
+                return swal({
                     type: 'success',
-                    title: resultado.msg,
-                    onClose: false,
-                    closeOnClickOutside: false,
-                    preConfirm: function() {
-                    
-                        return window.location.reload();
-    
-                    }
+                    title: resultado.msg
                 });
             }else{
 
@@ -37,30 +32,26 @@ $(document).ready( function(){
                     title: resultado.err
                 });
             }
-
         } catch (error) {
             return swal.insertQueueStep({
                 type: 'error',
                 title: error.err
             });
         }
-        
-
     }
 
     const eventos = () => {
 
-        let myForm = document.getElementById('cargo');
-        let crear  = document.getElementById('nuevo');
+        let myForm = document.getElementById('general-info');
 
         myForm.addEventListener('submit', (e) => {
             
             e.preventDefault();
-            let ipAPI = 'http://localhost/nominApp/cargoC/editarCargo';
+            let ipAPI = 'http://localhost/nominApp/UsuarioC/actualizaContrasena';
             let data = new FormData(myForm);
             swal.queue([{
-                title: 'Edición de descripción',
-                confirmButtonText: 'Registrar',
+                title: 'Actualizar la contraseña',
+                confirmButtonText: 'Actualizar',
                 text: '¿Estás seguro de realizar la operación?',
                 type: 'warning',
                 showCancelButton: true,
@@ -74,32 +65,15 @@ $(document).ready( function(){
             }])
               
         });
+    }
 
-        crear.addEventListener('click', (e) => {
-
-            let ipAPI = 'http://localhost/nominApp/cargoC/nuevoCargo';
-            let nuevoCargo;
-            swal.queue([{
-                title: 'Crear cargo',
-                confirmButtonText: 'Crear',
-                showCancelButton: true,
-                showLoaderOnConfirm: true,
-                padding: '2em',
-                html: '<p>Ingrese la descripción del nuevo cargo</p><input  class="form-control mb-4" type="text" id="nuevoCargo" name="nuevoCargo" value="" pattern="^[a-zA-Z]+">',
-                preConfirm: async function() {
-                    
-                    nuevoCargo = new FormData();
-                    nuevoCargo.append('descripcion', $('#nuevoCargo').val());
-                    return await editarComplementos(ipAPI, nuevoCargo);
-                      
-                }
-            }])
-        });
+    const iniciarComponentes = () => {
+    
+        return null;
 
     }
 
     /*ARRANCA EL CODIGO*/ 
-
     inicio();
 
 });

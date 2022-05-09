@@ -58,6 +58,10 @@ class Home extends BaseController
                 if( !password_verify( $pass, $usrRes[0]['password'] ) ){
                     $msg = 'La contraseña ingresada es incorrecta';
                 }
+
+                if( $usrRes[0]['status'] == 'SUS'){
+                    $msg = 'El usuario ingresado se encuentra suspendido.';
+                }
             }
         }
 
