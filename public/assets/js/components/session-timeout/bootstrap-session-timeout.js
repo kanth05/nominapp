@@ -40,8 +40,8 @@
         var g, h = {
                 title: "Your Session is About to Expire!",
                 message: "Your session is about to expire.",
-                logoutButton: "Logout",
-                keepAliveButton: "Stay",
+                logoutButton: "Salir",
+                keepAliveButton: "Extender",
                 keepAliveUrl: "/keep-alive",
                 ajaxType: "POST",
                 ajaxData: "",
@@ -65,7 +65,7 @@
         if ("function" != typeof i.onWarn) {
             var k = i.countdownMessage ? "<p>" + i.countdownMessage.replace(/{timer}/g, '<span class="countdown-holder"></span>') + "</p>" : "",
                 l = i.countdownBar ? '<div class="progress mb-3 mt-4">                   <div class="progress-bar bg-secondary countdown-bar active  progress-bar-striped progress-bar-animated" role="progressbar" style="min-width: 15px; width: 100%;">                                        </div>                 </div>' : "";
-            a("body").append('<div class="modal fade" id="session-timeout-dialog">               <div class="modal-dialog  modal-dialog-centered">                 <div class="modal-content">                                   <div class="modal-body">                     <p>' + i.message + "</p>                     " + k + "                     " + l + '                   </div>                   <div class="modal-footer justify-content-center">                     <button id="session-timeout-dialog-logout" type="button" class="btn btn-dark mb-0 mt-0">' + i.logoutButton + '</button>                     <button id="session-timeout-dialog-keepalive" type="button" class="btn btn-primary mb-0 mt-0" data-dismiss="modal">' + i.keepAliveButton + "</button>                   </div>                 </div>               </div>              </div>"), a("#session-timeout-dialog-logout").on("click", function() {
+            a("body").append('<div class="modal fade" id="session-timeout-dialog">               <div class="modal-dialog  modal-dialog-centered">                 <div class="modal-content">                                   <div class="modal-body">                     <p>' + i.message + "</p>                     " + k + "                     " + l + '                   </div>                   <div class="modal-footer justify-content-center">                     <button id="session-timeout-dialog-logout" type="button" class="btn btn-dark mb-0 mt-0">' + i.logoutButton + '</button>                     <button id="session-timeout-dialog-keepalive" type="button" class="btn btn-success mb-0 mt-0" data-dismiss="modal">' + i.keepAliveButton + "</button>                   </div>                 </div>               </div>              </div>"), a("#session-timeout-dialog-logout").on("click", function() {
                 window.location = i.logoutUrl
             }), a("#session-timeout-dialog").on("hide.bs.modal", function() {
                 d()

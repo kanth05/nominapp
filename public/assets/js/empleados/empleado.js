@@ -19,6 +19,7 @@ $(document).ready( function(){
                 });
             }else{
 
+                errApi = true;
                 mostrarError(resultado);
 
                 return swal.insertQueueStep({
@@ -41,6 +42,7 @@ $(document).ready( function(){
         const cedulaOld = document.getElementById('cedulaBD').value;
         const email  = document.getElementById('email');
         const status = document.getElementById('status');
+        let errApi = false;
         let statusDescrip = {
             1: 'ACT',
             2: 'SUS',
@@ -78,6 +80,7 @@ $(document).ready( function(){
             $(`#email`).removeClass('is-valid');
             $(`.error-div`).removeClass('d-block').addClass('d-none');
             $('.grupo-errores').remove();
+            
             validaCampo(ipAPI, email.value, 'email');
 
         })
@@ -109,7 +112,8 @@ $(document).ready( function(){
                     // return await guardarEmpleado(ipAPI, data);
                     await guardarEmpleado(ipAPI, data);
 
-                    if( cedulaUrl.length === 0 ){
+                    console.log('errApi', $('.error-div.d-block').length, 'cedulaUrl', cedulaUrl.length);
+                    if( cedulaUrl.length === 0 && $('.error-div.d-block').length === 0){
                         setTimeout( () => { window.location.replace("http://localhost/nominApp/empleados"); }, 1500); 
                     }
 

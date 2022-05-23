@@ -38,7 +38,7 @@ $routes->get('/destruirSesion', 'Home::destruirSesion');
 //empleados
 $routes->get('/empleados', 'Empleado::index', [ 'as' => 'empleados']);
 $routes->get('/empleadoEditar/(:any)', 'Empleado::empleado/$1', [ 'as' => 'empleadoEditar']);
-$routes->get('/empleadoNuevo/', 'Empleado::empleado', [ 'as' => 'empleadoNuevo']);
+$routes->get('/empleadoNuevo', 'Empleado::empleado', [ 'as' => 'empleadoNuevo']);
 //Cargos
 $routes->get('/cargos', 'CargoC::index', [ 'as' => 'cargos']);
 $routes->get('/borrarCargo/(:any)', 'CargoC::borrarCargo/$1', [ 'as' => 'borrarCargo']);

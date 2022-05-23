@@ -536,6 +536,12 @@ class Empleado extends BaseController
         $persona = new Persona();
         $cedula = $this->request->getPost('cedula');
         $idPersona = $this->request->getPost('idPersona');
+        $matches = null;
+
+        if ( 1 !== preg_match('/^[0-9]/', $cedula)){
+            $data[] = [ 'err' => 'La cédula no tiene el formato correcto.', 'campo' => 'email'];
+            return $this->respond($data, 200);
+        }
     
         if( $idPersona != 0 ){
 
@@ -567,6 +573,11 @@ class Empleado extends BaseController
         $persona = new Persona();
         $email = $this->request->getPost('email');
         $idPersona = $this->request->getPost('idPersona');
+        $matches = null;
+        if (1 !== preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $email, $matches)){
+            $data[] = [ 'err' => 'El correo no tiene el formato correcto.', 'campo' => 'email'];
+            return $this->respond($data, 200);
+        }
 
         if( $idPersona != 0 ){
 

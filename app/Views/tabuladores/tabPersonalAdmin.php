@@ -17,7 +17,7 @@
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
                         <form id="prima-admin">
-                            <div class="table-responsive mt-4 mb-4">
+                            <div class="table-responsive p-5 mb-4">
                                 <table id="tabulador" class="table table-hover non-hover" style="width:100%">
                                     <thead>
                                         <tr>

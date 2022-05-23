@@ -1,16 +1,17 @@
 var SessionTimeout=function() {
     var e=function() {
         $.sessionTimeout( {
-            title:"Session Timeout Notification", 
-            message:"Your session is about to expire.", 
-            keepAliveUrl:"", 
-            redirUrl:"auth_lockscreen.html", 
-            logoutUrl:"auth_login.html", 
-            warnAfter:6e3, 
-            redirAfter:21e3, 
-            ignoreUserActivity:!0, 
-            countdownMessage:"Redirecting in {timer}.", 
-            countdownBar: !0
+            title:"Notificación de sesión", 
+            message:"La aplicación se encuentra inactiva por mucho tiempo, se procederá a cerrar sesión.", 
+            logoutButton: "Finalizar sesión",
+            keepAliveButton: "Extender sesión",
+            keepAliveUrl:"/", 
+            redirUrl:"/nominApp/destruirSesion", 
+            logoutUrl:"/nominApp/destruirSesion",
+            warnAfter:900e3, 
+            redirAfter:920e3, 
+            ignoreUserActivity:0, 
+            keepAlive: !0
         }
         )
     };

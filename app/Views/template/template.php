@@ -113,6 +113,8 @@
     <script src="<?=base_url();?>/public/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
     <script src="<?=base_url();?>/public/plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="<?=base_url();?>/public/plugins/sweetalerts/custom-sweetalert.js"></script>
+    <script src="<?=base_url();?>/public/assets/js/components/session-timeout/bootstrap-session-timeout.js"></script>
+    <script src="<?=base_url();?>/public/assets/js/components/session-timeout/custom-bootstrap_session_timeout.js"></script>
 
     <?= $this->renderSection('pluginsBottom'); ?>
 

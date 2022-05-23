@@ -2,36 +2,42 @@
             
             <nav id="compactSidebar">
                 <ul class="menu-categories">
+                    <?php  $session = \Config\Services::session(); ?>
+                    <?php if($session->codRol != 'ANN'): ?>
+                        <li class="menu" >
+                            <a href="#menu1" data-active="false" class="menu-toggle">
+                                <div class="base-menu">
+                                    <i class="far fa-user sm-icon text-light d-block"></i>
+                                    <span>Empleados</span>
+                                </div>
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </li>
+                    <?php endif; ?>
 
-                    <li class="menu" >
-                        <a href="#menu1" data-active="false" class="menu-toggle">
-                            <div class="base-menu">
-                                <i class="far fa-user sm-icon text-light d-block"></i>
-                                <span>Empleados</span>
-                            </div>
-                        </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </li>
+                    <?php if($session->codRol != 'ANF'): ?>
+                        <li class="menu">
+                            <a href="#menu2" data-active="false" class="menu-toggle">
+                                <div class="base-menu">
+                                    <i class="far fa-address-book sm-icon text-light d-block"></i>
+                                    <span>Nómina</span>
+                                </div>
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </li>
+                    <?php endif; ?>
 
-                    <li class="menu">
-                        <a href="#menu2" data-active="false" class="menu-toggle">
-                            <div class="base-menu">
-                                <i class="far fa-address-book sm-icon text-light d-block"></i>
-                                <span>Nómina</span>
-                            </div>
-                        </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </li>
-
-                    <li class="menu">
-                        <a href="#menu3" data-active="true" class="menu-toggle">
-                            <div class="base-menu">
-                                <i class="far fa-chart-bar sm-icon text-light d-block"></i>
-                                <span>Tabuladores</span>
-                            </div>
-                        </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </li>
+                    <?php if($session->codRol != 'ANF'): ?>
+                        <li class="menu">
+                            <a href="#menu3" data-active="true" class="menu-toggle">
+                                <div class="base-menu">
+                                    <i class="far fa-chart-bar sm-icon text-light d-block"></i>
+                                    <span>Tabuladores</span>
+                                </div>
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </li>
+                    <?php endif; ?>
 
                     <li class="menu">
                         <a href="#menu4" data-active="true" class="menu-toggle">
@@ -93,7 +99,6 @@
                 </div>
 
                 <div class="submenu show" id="menu4">
-                    <?php  $session = \Config\Services::session(); ?>
                     <ul class="submenu-list" data-parent-element="#starterKit">
                         <li>
                             <?php if($session->codRol == 'JEF'): ?>

@@ -10,7 +10,7 @@
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>Prima por antiguedad</h3>
+                    <h3>Prima por profesión</h3>
                 </div>
             </div>
             
@@ -18,7 +18,7 @@
                 <div class="row layout-top-spacing" id="cancel-row">
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
-                            <div class="table-responsive mt-4 mb-4">
+                            <div class="table-responsive p-5 mb-4">
                                 <table id="tabulador" class="table table-hover non-hover" style="width:100%">
                                     <thead>
                                         <tr>

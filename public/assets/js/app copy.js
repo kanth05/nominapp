@@ -478,8 +478,8 @@ var App = function() {
             inBuiltfunctionality.onSidebarHover();
 
 
-            // colorPallet.createPallet();
-            // colorPallet.setcolorScheme();
+            colorPallet.createPallet();
+            colorPallet.setcolorScheme();
         }
     }
 

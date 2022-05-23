@@ -391,14 +391,14 @@
                                                 <div class="row">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-md-0 mt-4">
                                                         <div class="form">
-                                                            <div class="row">
+                                                            <div class="row align-items-center">
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="numHijos">Número de hijos</label>
                                                                         <input type="number" class="form-control mb-4" id="numHijos" name="numHijos" placeholder="0" value="<?= isset($numHijos) ? $numHijos : null;?>" min="0" pattern="^[0-9]+">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-4">
+                                                                <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="becaEscolar">¿Cuenta con una beca escolar?</label>
                                                                         <select class="custom-select" name="becaEscolar" id="becaEscolar">
@@ -407,26 +407,16 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-5">
+                                                                <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="incapacidad">¿El empleado posee alguna discapacidad?</label>
                                                                         <select class="custom-select" name="incapacidad" id="incapacidad">
                                                                             <option value='2' <?= ($incapacidad == 'N' || !isset($becaEscolar)) ? 'selected' : null ?> >No</option>
                                                                             <option value='1' <?= ($incapacidad == 'S') ? 'selected' : null ?> >Sí</option>
                                                                         </select>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label for="encargaduria">Diferencia por Encargaduria </label>
-                                                                        <input type="number" step="any" class="form-control mb-4" id="encargaduria" name="encargaduria" placeholder="0" value="<?= isset($encargaduria) ? $encargaduria : null;?>" min="0"">
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                <div class="col-sm-6">
+                                                                <div class="col-sm-3">
                                                                     <div class="form-group">
                                                                         <label class="dob-input" for="vacaciones">¿El empleado se encuentra de vacaciones?</label>
                                                                         <select class="custom-select" name="vacaciones" id="vacaciones">
@@ -434,9 +424,8 @@
                                                                             <option value='1' <?= ($indVacaciones == 'S') ? 'selected' : null ?>>Sí</option>
                                                                         </select>
                                                                     </div>
-                                                                    
                                                                 </div>
-                                                            </div>
+                                                            </div>    
                                                             <div class="row">
                                                                 <div class="col-sm-12">
                                                                     <div class="form-group">

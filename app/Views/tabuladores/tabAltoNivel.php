@@ -16,7 +16,7 @@
             <div class="row layout-top-spacing" id="cancel-row">
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <div class="table-responsive mt-4 mb-4">
+                        <div class="table-responsive p-5 mb-4">
                             <form id="prima-alto">
                                 <table id="tabulador" class="table table-hover non-hover" style="width:100%">
                                     <thead>
