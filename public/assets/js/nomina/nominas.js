@@ -47,12 +47,26 @@ $(document).ready( function(){
 
         url = 'http://localhost/nominApp/nomina/validaNominas';
 
+        let data = new FormData();
+        let fec = $('#fecha').val();
+        let arrfec = fec.split('-').reverse();
+        data.append('dia', arrfec[0]);
+        data.append('mes', arrfec[1]);
+        data.append('ano', arrfec[2]);
+
+        if( $('#fecha').val().length == 0 ){
+            return swal({
+                type: 'error',
+                title: 'El campo de fecha de prueba no puede estar vacío.'
+            });;
+        }
+
         try {
-            const res       = await fetch(url);
+            const res       = await fetch(url, {method: 'POST', body: data});
             const resultado = await res.json();
 
             if(resultado['msg']){
-                 window.location.replace('http://localhost/nominApp/nominaNueva');
+                 window.location.replace(`http://localhost/nominApp/nominaNueva?dia=${arrfec[0]}&mes=${arrfec[1]}&ano=${arrfec[2]}`);
             }else{
 
                 swal({

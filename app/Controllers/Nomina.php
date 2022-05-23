@@ -17,6 +17,23 @@ class Nomina extends BaseController
 
     use ResponseTrait; //Para formatear la respuesta de salida para consumo del frontend
 
+    //Estos montos están relacionados a los cálculos de las deducciones
+    private $salarioAnual    = 12;
+    private $salarioSemanal  = 52;
+    private $retencion       = 0.04;
+    private $nLunes          = 4;
+    private $faovE           = 0.01;
+    private $salarioAnualRpe = 12;
+    private $salarioSemanalRpe = 52;
+    private $retencionRpe    = 0.005;
+    private $nLunesRpe       = 4;
+    private $tesoreriaSs     = 0.03;
+    private $ivssTopeSSO     = 0.04;
+    private $ivssSSO         = 0.09;
+    private $faovRpe         = 0.02;
+    private $rpe1            = 0.02;
+    private $rpe2            = 0.005;
+
     public function index()
     {
 
@@ -34,11 +51,15 @@ class Nomina extends BaseController
 
         $hoy    =  Time::now();
         
-        $numQuincena = ( $hoy->day <= 15) ? 'I' : 'II';
+        // $numQuincena = ( $hoy->day <= 15) ? 'I' : 'II';
+        $numQuincena = ( intval($this->request->getVar('dia')) <= 15) ? 'I' : 'II';
 
         $data = $this->generarNomina();
 
-        $data['mes'] = $hoy->toLocalizedString('MMMM');
+        // $data['mes'] = $hoy->toLocalizedString('MMMM');
+        $data['dia'] = $this->request->getVar('dia');
+        $data['mes'] = $this->request->getVar('mes');
+        $data['ano'] = $this->request->getVar('ano');
         $data['quincena'] = $numQuincena;
 
         return view('nominas/nominaDetalle', $data);
@@ -145,8 +166,21 @@ class Nomina extends BaseController
             $primaDis          = ( $empleado->indDiscapacidad == 'S' ) ? $this->calculaPrimaDis( $empleado->numHijos ) : 0;
             $totalRemuneracion = $sueldoBase + $primaProfAsig + $primaAntAsig + $primaHijos + $encargaduria;
             $bonoVacacional    = ( $empleado->indVacaciones == 'S' ) ? $this->calcularVacaciones($sueldoBase, $primaProfAsig, $primaAntAsig, $encargaduria) : 0;
-            $complementoSueldo = $this->buscaComplementoSueldo();
-            $complementoEspecial    = $this->buscaComplementoesp();
+            $complementoSueldo = ( !empty( $empleado->complementoSueldo) ) ? $empleado->complementoSueldo : 0;
+            $complementoEspecial = $this->buscaComplementoesp();
+            $bonoProteico      = ( !empty( $empleado->bonoProteico) ) ? $empleado->bonoProteico : 0;
+            $seguroSocial      = $this->calcularSeguroSocial( $totalRemuneracion);
+            $faov              = $this->calcularFaov( $totalRemuneracion, $bonoVacacional);
+            $rpe               = $this->calcularRpe( $totalRemuneracion);
+            $tesoreriaSs       = $this->calcularTesoreriaSs( $totalRemuneracion);
+            $ivssAportePatron  = $this->calcularIvssAportePatron( $seguroSocial );
+            $faovAportePatron  = $this->calcularFaovAportePatron( $totalRemuneracion, $bonoVacacional);
+            $rpeAportePatron   = $this->calcularRpeAportePatron( $rpe );
+            $tesoreriaAportePatron = $this->calcularTesoreriaAportePatron( $totalRemuneracion );
+            $totalAportaciones = $this->calcularTotalAportaciones( $primaBeca, $totalRemuneracion, $bonoVacacional, $complementoSueldo, $complementoEspecial, $bonoProteico);
+            $totalDeducciones  = $this->calcularTotalDeducciones( $seguroSocial, $faov, $rpe);
+            $totalAportePatron = $this->calcularTotalAportePatron( $ivssAportePatron, $faovAportePatron, $rpeAportePatron, $tesoreriaAportePatron, $tesoreriaSs );
+            $total             = $totalAportaciones - $totalDeducciones;
 
             
             $empleado->salario         = $salario;
@@ -165,8 +199,21 @@ class Nomina extends BaseController
             $empleado->primaDis        = $primaDis;
             $empleado->totRemuneracion = $totalRemuneracion;
             $empleado->bonoVacc        = $bonoVacacional;
-            $empleado->complementoSueldo = $complementoSueldo;
-            $empleado->complementoEspecial    = $complementoEspecial;
+            $empleado->complementoSueldo   = $complementoSueldo;
+            $empleado->complementoEspecial = $complementoEspecial;
+            $empleado->bonoProteico     = $bonoProteico;
+            $empleado->seguroSocial     = $seguroSocial;
+            $empleado->faov             = $faov;
+            $empleado->rpe              = $rpe;
+            $empleado->tesoreriaSs      = $tesoreriaSs;
+            $empleado->appSeguroSocial  = $ivssAportePatron;
+            $empleado->appFaov          = $faovAportePatron;
+            $empleado->appRpe           = $rpeAportePatron;
+            $empleado->appTesoreria     = $tesoreriaAportePatron;
+            $empleado->totAsignacion    = $totalAportaciones;
+            $empleado->toodeduccion     = $totalDeducciones;
+            $empleado->totApp           = $totalAportePatron;
+            $empleado->netoCobrar       = $total;
             
             $arrNomina[] = $empleado;
 
@@ -182,7 +229,8 @@ class Nomina extends BaseController
 
     public function crearNuevaNomina(){
 
-        $hoy =  Time::now();
+        // $hoy =  Time::now();
+        $hoy =  Time::createFromDate( $this->request->getPost('ano'),$this->request->getPost('mes'),$this->request->getPost('dia') );
 
         $numQuincena = ( $hoy->day <= 15) ? 'I' : 'II';
         $mes         = $hoy->toLocalizedString('MMMM');
@@ -244,20 +292,20 @@ class Nomina extends BaseController
                 'bonoVacc'            => $empleado->bonoVacc,
                 'complementoSueldo'   => $empleado->complementoSueldo,
                 'complementoEspecial' => $empleado->complementoEspecial,
-                'bonoProteico'        => 0,
+                'bonoProteico'        => $empleado->bonoProteico,
                 'retroActivo'         => 0,
-                'seguroSocial'        => 0,
-                'faov'                => 0,
-                'rpe'                 => 0,
-                'tesoreriaSs'         => 0,
-                'appSeguroSocial'     => 0,
-                'appFaov'             => 0,
-                'appRpe'              => 0,
-                'appTesoreria'        => 0,
-                'totAsignacion'       => 0,
-                'toodeduccion'        => 0,
-                'totApp'              => 0,
-                'netoCobrar'          => 0
+                'seguroSocial'        => $empleado->seguroSocial,
+                'faov'                => $empleado->faov,
+                'rpe'                 => $empleado->rpe,
+                'tesoreriaSs'         => $empleado->tesoreriaSs,
+                'appSeguroSocial'     => $empleado->ivssAportePatron,
+                'appFaov'             => $empleado->faovAportePatron,
+                'appRpe'              => $empleado->rpeAportePatron,
+                'appTesoreria'        => $empleado->tesoreriaAportePatron,
+                'totAsignacion'       => $empleado->totalAportaciones,
+                'toodeduccion'        => $empleado->totalDeducciones,
+                'totApp'              => $empleado->totalAportePatron,
+                'netoCobrar'          => $empleado->total
              ];
 
              $nominaDetal->insert($insert);
@@ -383,10 +431,79 @@ class Nomina extends BaseController
 
     }
 
+    public function calcularSeguroSocial( $totalRemuneracion ){
+
+        return round( ( $totalRemuneracion * $this->salarioAnual )/ $this->salarioSemanal * $this->retencion * $this->nLunes, 2 );
+
+    }
+
+    public function calcularFaov( $totalRemuneracion, $bonoVacacional){
+
+        return round( ($totalRemuneracion + $bonoVacacional)*$this->faovE ,2 );
+
+    }
+
+    public function calcularRpe ( $totalRemuneracion ){
+
+        return round( ( $totalRemuneracion * $this->salarioAnualRpe )/ $this->salarioSemanalRpe * $this->retencionRpe * $this->nLunesRpe, 2 );
+
+    }
+
+    public function calcularTesoreriaSs ( $totalRemuneracion){
+
+        return round( $totalRemuneracion*$this->tesoreriaSs ,2 );
+
+    }
+
+    public function calcularIvssAportePatron( $seguroSocial ){
+
+        return round( ( $seguroSocial*$this->ivssSSO)/$this->ivssTopeSSO ,2 );
+
+    } 
+
+    public function calcularFaovAportePatron( $totalRemuneracion, $bonoVacacional){
+
+        return round( ($totalRemuneracion + $bonoVacacional)*$this->faovRpe ,2 );
+
+    }
+
+    public function calcularRpeAportePatron( $rpe ){
+
+        return round( ($rpe*$this->rpe1) / $this->rpe2,2 );
+
+    }
+
+    public function calcularTesoreriaAportePatron ( $totalRemuneracion ){
+
+        return round( $totalRemuneracion*$this->tesoreriaSs,2 );
+
+    }
+
+    public function calcularTotalAportaciones($primaBeca, $totalRemuneracion, $bonoVacacional, $complementoSueldo, $complementoEspecial, $bonoProteico){
+
+        return round( $primaBeca + $totalRemuneracion + $bonoVacacional + $complementoSueldo + $complementoEspecial + $bonoProteico,2 );
+
+    }
+
+    public function calcularTotalDeducciones( $seguroSocial, $faov, $rpe ){
+
+        return round( $seguroSocial + $faov + $rpe ,2 );
+
+    }
+
+    public function calcularTotalAportePatron( $ivssAportePatron, $faovAportePatron, $rpeAportePatron, $tesoreriaAportePatron, $tesoreria ){
+
+        return round( $ivssAportePatron + $faovAportePatron + $rpeAportePatron + $tesoreriaAportePatron + $tesoreria ,2 );
+
+    }
+
     public function validaNominas(){
 
         $nomina = new NominaM();
-        $res = $nomina->validaNominas();
+        
+        $fecha = $this->request->getPost();
+        
+        $res = $nomina->validaNominas( $fecha );
         return $this->respond($res, 200);
 
     }

@@ -59,8 +59,16 @@ $(document).ready( function(){
 
     const crearNomina = async ( url ) => {
 
+        let data = new FormData();
+        let dia = $('#dia').val();
+        let mes = $('#mes').val();
+        let ano = $('#ano').val();
+        data.append('dia', dia);
+        data.append('mes', mes);
+        data.append('ano', ano);
+
         try {
-            const res       = await fetch(url);
+            const res       = await fetch(url, {method: 'POST', body: data });
             const resultado = await res.json();
 
             if(resultado['msg']){

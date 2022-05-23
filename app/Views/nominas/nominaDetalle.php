@@ -11,10 +11,15 @@
             <div class="page-header">
                 <div class="page-title">
                     <?php if ( !isset($id) ): ?>
-                        <h3>Nueva nómina <?= $quincena ?> del mes de <?= $mes ?></h3>
+                        <!-- <h3>Nueva nómina <?=null //$quincena ?> del mes de <?=null //$mes ?></h3> -->
+                        <h3>Nueva nómina <?= $quincena ?> </h3>
                     <?php else: ?>
-                        <h3>Detalle de nómina <?= $quincena?>  del mes de <?= $mes ?></h3>
+                        <!-- <h3>Detalle de nómina <?=null //$quincena?>  del mes de <?=null //$mes ?></h3> -->
+                        <h3>Detalle de nómina <?= $quincena?> </h3>
                     <?php endif; ?>
+                    <input hidden type="text" value="<?= isset($mes) ? $mes : null?>" id="mes">
+                    <input hidden type="text" value="<?= isset($dia) ? $dia : null?>" id="dia">
+                    <input hidden type="text" value="<?= isset($ano) ? $ano : null?>" id="ano">
                 </div>
             </div>
             
@@ -102,21 +107,21 @@
                                             <td><?= $empleado->totRemuneracion?></td>
                                             <td><?= $empleado->bonoVacc?></td>
                                             <td><?= $empleado->complementoSueldo?></td>
-                                            <td><?= $empleado->complementoEspecial?>%</td>
+                                            <td><?= $empleado->complementoEspecial?></td>
+                                            <td><?= $empleado->bonoProteico?></td>
                                             <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
+                                            <td><?= $empleado->seguroSocial ?></td>
+                                            <td><?= $empleado->faov ?></td>
+                                            <td><?= $empleado->rpe ?></td>
+                                            <td><?= $empleado->tesoreriaSs ?></td>
+                                            <td><?= $empleado->appSeguroSocial ?></td>
+                                            <td><?= $empleado->appFaov ?></td>
+                                            <td><?= $empleado->appRpe ?></td>
+                                            <td><?= $empleado->appTesoreria ?></td>
+                                            <td><?= $empleado->totAsignacion ?></td>
+                                            <td><?= $empleado->toodeduccion ?></td>
+                                            <td><?= $empleado->totApp ?></td>
+                                            <td><?= $empleado->netoCobrar ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

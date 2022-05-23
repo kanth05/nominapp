@@ -20,13 +20,16 @@ class NominaM extends Model{
         'mes'
     ];
 
-    public function validaNominas(){
+    public function validaNominas( $fecha ){
 
-        $fecha =  Time::now();
+        // $fec =  Time::now();
+        $fecha =  Time::createFromDate( $fecha['ano'],$fecha['mes'],$fecha['dia'] );
+        $numQuincena = ( $fecha->day <= 15) ? 'I' : 'II';
         $mes   = $fecha->toLocalizedString('MMMM');
         $anio  = $fecha->toLocalizedString('yyyy');
+
         $where = [
-            'numQuincena' => 'II',
+            'numQuincena' => $numQuincena,
             'mes'         => $mes,
             'anio'        => $anio
         ];
@@ -35,7 +38,7 @@ class NominaM extends Model{
         $res = [];
 
         if( count( $arrRes ) != 0 ){
-            $res['err'] = 'Ya se han generado las dos quincena del mes correspondiente';
+            $res['err'] = 'Ya se ha generado la quincena de la quincena correspondiente';
         }else{
             $res['msg'] = 'Ok';
         }
