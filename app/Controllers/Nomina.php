@@ -54,7 +54,7 @@ class Nomina extends BaseController
         // $numQuincena = ( $hoy->day <= 15) ? 'I' : 'II';
         $numQuincena = ( intval($this->request->getVar('dia')) <= 15) ? 'I' : 'II';
 
-        $data = $this->generarNomina();
+        $data = $this->generarNomina( $numQuincena );
 
         // $data['mes'] = $hoy->toLocalizedString('MMMM');
         $data['dia'] = $this->request->getVar('dia');
@@ -128,7 +128,7 @@ class Nomina extends BaseController
 
     }
 
-    public function generarNomina(){
+    public function generarNomina( $numQuincena ){
 
         $db = db_connect();
 
@@ -143,7 +143,11 @@ class Nomina extends BaseController
                'INNER JOIN banco b '.
                'ON p.codInstBanca = b.codInstBanca '.
                "WHERE p.status = 'ACT' ".
-               "AND p.cedula != '00001' ";             
+               "AND p.cedula != '00001' ";
+        
+        if( $numQuincena != 'II' ){
+            $sql .= "AND p.codTipoNomina != 'HP' ";
+        }
         
         $arrEmpleados = $db->query($sql)->getResult();
 
@@ -162,10 +166,10 @@ class Nomina extends BaseController
             $primaAntAsig      = $this->calculaPrimaAnt( $sueldoBase, $primaAntiguedad);
             $encargaduria      = ( !empty( $empleado->encargaduria) ) ? $empleado->encargaduria : 0;
             $primaHijos        = $this->calculaPrimaHijos( $empleado->numHijos );
-            $primaBeca         = ( $empleado->indBecaEscolar  == 'S' ) ? $this->calculaPrimaBeca( $empleado->numHijos ) : 0;
+            $primaBeca         = ( $empleado->indBecaEscolar  == 'S' && $numQuincena == 'II' ) ? $this->calculaPrimaBeca( $empleado->numHijos ) : 0;
             $primaDis          = ( $empleado->indDiscapacidad == 'S' ) ? $this->calculaPrimaDis( $empleado->numHijos ) : 0;
             $totalRemuneracion = $sueldoBase + $primaProfAsig + $primaAntAsig + $primaHijos + $encargaduria;
-            $bonoVacacional    = ( $empleado->indVacaciones == 'S' ) ? $this->calcularVacaciones($sueldoBase, $primaProfAsig, $primaAntAsig, $encargaduria) : 0;
+            $bonoVacacional    = ( $numQuincena == 'II' ) ? $this->calcularVacaciones($sueldoBase, $primaProfAsig, $primaAntAsig, $encargaduria) : 0;
             $complementoSueldo = ( !empty( $empleado->complementoSueldo) ) ? $empleado->complementoSueldo : 0;
             $complementoEspecial = $this->buscaComplementoesp();
             $bonoProteico      = ( !empty( $empleado->bonoProteico) ) ? $empleado->bonoProteico : 0;
@@ -263,7 +267,7 @@ class Nomina extends BaseController
         $nomina->orderBy('idNomina', 'DESC');
         $idNomina = $nomina->first();
 
-        $empleados = $this->generarNomina();
+        $empleados = $this->generarNomina( $numQuincena );
 
         foreach($empleados['empleados'] as $empleado){
 
@@ -298,14 +302,14 @@ class Nomina extends BaseController
                 'faov'                => $empleado->faov,
                 'rpe'                 => $empleado->rpe,
                 'tesoreriaSs'         => $empleado->tesoreriaSs,
-                'appSeguroSocial'     => $empleado->ivssAportePatron,
-                'appFaov'             => $empleado->faovAportePatron,
-                'appRpe'              => $empleado->rpeAportePatron,
-                'appTesoreria'        => $empleado->tesoreriaAportePatron,
-                'totAsignacion'       => $empleado->totalAportaciones,
-                'toodeduccion'        => $empleado->totalDeducciones,
-                'totApp'              => $empleado->totalAportePatron,
-                'netoCobrar'          => $empleado->total
+                'appSeguroSocial'     => $empleado->appSeguroSocial,
+                'appFaov'             => $empleado->appFaov,
+                'appRpe'              => $empleado->appRpe,
+                'appTesoreria'        => $empleado->appTesoreria,
+                'totAsignacion'       => $empleado->totAsignacion,
+                'toodeduccion'        => $empleado->toodeduccion,
+                'totApp'              => $empleado->totApp,
+                'netoCobrar'          => $empleado->netoCobrar
              ];
 
              $nominaDetal->insert($insert);

@@ -42,12 +42,17 @@ $(document).ready( function(){
         const cedulaOld = document.getElementById('cedulaBD').value;
         const email  = document.getElementById('email');
         const status = document.getElementById('status');
+        const imgBd = document.getElementById('fileBD').value;
         let errApi = false;
         let statusDescrip = {
             1: 'ACT',
             2: 'SUS',
             3: 'EGR'
         };
+
+        if ( imgBd.length != 0){
+            $('.dropify-render img').attr('src', imgBd);
+        }
 
         if( cedulaOld.length != 0){
 
@@ -94,6 +99,8 @@ $(document).ready( function(){
             let titulo = ( cedulaUrl.length === 0 ) ? 'Registrar un nuevo empleado' : 'Actualización de empleado';
             let ipAPI = 'http://localhost/nominApp/'+endpoint;
             let data = new FormData(myForm);
+            let foto64 = $('.dropify-render img').attr('src');
+            data.append('foto', foto64);
             data.append('cedulaDB', cedulaUrl);
             data.append('observaciones', observaciones);
 

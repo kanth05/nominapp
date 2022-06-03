@@ -30,7 +30,8 @@
                                                     <div class="col-xl-2 col-lg-12 col-md-4 text-center">
                                                         <div class="row">
                                                             <div class="upload mt-4 pl-md-4 ml-3">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="<?= base_url()?>/public/assets/img/200x200.jpg" data-max-file-size="2M" />
+                                                                <input type="file" name="foto" id="input-file-max-fs" class="dropify" data-default-file="<?= base_url().'/public/assets/img/200x200.jpg' ?>" data-max-file-size="20M" />
+                                                                <input hidden type="text" name="fileBD" id="fileBD" value="<?= empty($foto) ? '' : $foto?>">
                                                                 <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Subir foto</p>
                                                             </div>
                                                         </div>

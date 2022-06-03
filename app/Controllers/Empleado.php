@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\Files\File;
 
 use App\Models\EstadoCivil;
 use App\Models\NivelAcademico;
@@ -103,7 +104,8 @@ class Empleado extends BaseController
                   'becaEscolar'     => $arrPersona[0]['indBecaEscolar'],
                   'codEstado'       => $arrPersona[0]['codEstado'],
                   'encargaduria'    => $arrPersona[0]['encargaduria'],
-                  'observaciones'   => $arrPersona[0]['observaciones']
+                  'observaciones'   => $arrPersona[0]['observaciones'],
+                  'foto'            => $arrPersona[0]['foto64']
                 ];
         }else{
             
@@ -150,7 +152,8 @@ class Empleado extends BaseController
                   'becaEscolar'     => '',
                   'codEstado'       => '',
                   'encargaduria'    => '',
-                  'observaciones'   => ''
+                  'observaciones'   => '',
+                  'foto'            => ''
                 ];
         }
 
@@ -195,6 +198,12 @@ class Empleado extends BaseController
         $codTipoNomin    = $this->request->getPost('tipoNomina');
         $encargaduria    = $this->request->getPost('encargaduria');
         $observaciones   = $this->request->getPost('observaciones');
+        $img64           = $this->request->getPost('foto');
+        // $img             = $this->request->getFile('foto');
+        // $img64           = base64_encode( $img->store() );
+
+        var_dump($this->request->getPost());
+        die();
 
         $data = [];
 
@@ -323,7 +332,8 @@ class Empleado extends BaseController
             'indVacaciones'   => $indVacaciones,
             'codTipoNomina'   => $codTipoNomin,
             'encargaduria'    => $encargaduria,
-            'observaciones'   => $observaciones
+            'observaciones'   => $observaciones,
+            'foto64'          => $img64
         ];
 
         $persona = new Persona();
@@ -378,6 +388,9 @@ class Empleado extends BaseController
         $codTipoNomin    = $this->request->getPost('tipoNomina');
         $encargaduria    = $this->request->getPost('encargaduria');
         $observaciones   = $this->request->getPost('observaciones');
+        $img64           = $this->request->getPost('foto');
+        // $img             = $this->request->getFile('foto');
+        // $img64           = base64_encode( $img->store() );
 
         $data = [];
 
@@ -515,7 +528,8 @@ class Empleado extends BaseController
             'indVacaciones'   => $indVacaciones,
             'codTipoNomina'   => $codTipoNomin,
             'encargaduria'    => $encargaduria,
-            'observaciones'   => $observaciones
+            'observaciones'   => $observaciones,
+            'foto64'          => $img64
         ];
 
         $persona = new Persona();

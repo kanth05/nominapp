@@ -49,7 +49,8 @@ class Persona extends Model{
         'observaciones',
         'encargaduria',
         'bonoProteico',
-        'complementoSueldo'
+        'complementoSueldo',
+        'foto64'
      ];
 
      public function consultaEmpleados(){
